@@ -1,3 +1,3 @@
-export const MockData = {
+export const mockData = {
   placesCount: 3
 };
