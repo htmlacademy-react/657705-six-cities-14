@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import App from './app/app';
 
-import { MockData } from './mock/data';
+import { mockData } from './mock/data';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,6 +11,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App placesCount={MockData.placesCount} />
+    <App placesCount={mockData.placesCount} />
   </React.StrictMode>
 );
