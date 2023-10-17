@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import App from './app/app';
 
-import { mockData } from './mock/data';
+import { offers } from './mocks/offers-faker';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,6 +11,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App placesCount={mockData.placesCount} />
+    <App
+      offers={offers}
+    />
   </React.StrictMode>
 );

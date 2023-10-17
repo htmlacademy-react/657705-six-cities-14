@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import { Offer } from '../../types/offer';
 
-function PlaceCard(): JSX.Element {
+type OfferItemProps = {
+  data: Offer;
+};
+
+function OfferItem({ data }: OfferItemProps): JSX.Element {
+  console.log(data);
   return (
     <article className="cities__card place-card">
       <div className="place-card__mark">
@@ -39,4 +45,4 @@ function PlaceCard(): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default OfferItem;

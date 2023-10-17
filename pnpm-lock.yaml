@@ -40,6 +40,9 @@ dependencies:
     version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
+  '@faker-js/faker':
+    specifier: ^8.2.0
+    version: 8.2.0
   '@jedmao/redux-mock-store':
     specifier: 3.0.5
     version: 3.0.5(redux@4.2.1)
@@ -52,9 +55,6 @@ devDependencies:
   '@testing-library/user-event':
     specifier: 14.5.1
     version: 14.5.1(@testing-library/dom@9.3.3)
-  '@types/faker':
-    specifier: 5.5.9
-    version: 5.5.9
   '@types/leaflet':
     specifier: 1.9.3
     version: 1.9.3
@@ -586,6 +586,11 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
+  /@faker-js/faker@8.2.0:
+    resolution: {integrity: sha512-VacmzZqVxdWdf9y64lDOMZNDMM/FQdtM9IsaOPKOm2suYwEatb8VkdHqOzXcDnZbk7YDE2BmsJmy/2Hmkn563g==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+    dev: true
+
   /@humanwhocodes/config-array@0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
     engines: {node: '>=10.10.0'}
@@ -831,10 +836,6 @@ packages:
 
   /@types/chai@4.3.7:
     resolution: {integrity: sha512-/k+vesl92vMvMygmQrFe9Aimxi6oQXFUX9mA5HanTrKUSAMoLauSi6PNFOdRw0oeqilaW600GNx2vSaT2f8aIQ==}
-    dev: true
-
-  /@types/faker@5.5.9:
-    resolution: {integrity: sha512-uCx6mP3UY5SIO14XlspxsGjgaemrxpssJI0Ol+GfhxtcKpv9pgRZYsS4eeKeHVLje6Qtc8lGszuBI461+gVZBA==}
     dev: true
 
   /@types/geojson@7946.0.11:
