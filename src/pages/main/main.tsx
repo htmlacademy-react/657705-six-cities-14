@@ -1,7 +1,7 @@
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import OfferList from '../../components/offer-list/offer-list';
+import PlacesList from '../../components/places-list/places-list';
 
 import { Offers } from '../../types/offer';
 
@@ -76,7 +76,7 @@ function Main({ offers }: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul> */}
               </form>
-              <OfferList offers={offers} />
+              <PlacesList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

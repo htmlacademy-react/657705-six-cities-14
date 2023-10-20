@@ -1,13 +1,11 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
-import { AppRoute, AuthorizationStatus } from '../const';
-import { Offers } from '../types/offer';
-
-import Main from '../pages/main/main';
-import Favorites from '../pages/favorites/favorites';
-import Offer from '../pages/offer/offer';
-import Login from '../pages/login/login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../components/private-route/private-route';
+import { AppRoute, AuthorizationStatus } from '../const';
+import Favorites from '../pages/favorites/favorites';
+import Login from '../pages/login/login';
+import Main from '../pages/main/main';
+import Offer from '../pages/offer/offer';
+import { Offers } from '../types/offer';
 
 type AppProps = {
   offers: Offers;
@@ -33,7 +31,7 @@ function App({ offers }: AppProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites />
+              <Favorites offers={offers} />
             </PrivateRoute>
           }
         />

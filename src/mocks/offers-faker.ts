@@ -33,7 +33,7 @@ function createOffer(): Offer {
       name: faker.internet.displayName()
     },
     id: faker.string.uuid(),
-    images: Array.from({ length: 5 }, () => faker.image.urlLoremFlickr()),
+    images: Array.from({ length: 5 }, () => faker.image.urlLoremFlickr({ category: 'cats' })),
     isFavorite: faker.datatype.boolean(),
     isPremium: faker.datatype.boolean(),
     location: {
@@ -42,7 +42,7 @@ function createOffer(): Offer {
       zoom: faker.number.int(10)
     },
     maxAdults: faker.number.int(5),
-    previewImage: faker.image.urlLoremFlickr(),
+    previewImage: faker.image.urlLoremFlickr({ category: 'cats' }),
     price: faker.number.int(1000),
     rating: faker.number.float({ max: 5, precision: 0.1 }),
     title: faker.person.jobTitle(),
@@ -50,6 +50,6 @@ function createOffer(): Offer {
   };
 }
 
-const offers: Offers = Array.from({ length: 4 }, createOffer);
+const offers: Offers = Array.from({ length: 8 }, createOffer);
 
 export { offers };
