@@ -33,7 +33,7 @@ function createOffer(): Offer {
       name: faker.internet.displayName()
     },
     id: faker.string.uuid(),
-    images: Array.from({ length: 5 }, () => faker.image.urlLoremFlickr({ category: 'cats' })),
+    images: Array.from({ length: 6 }, () => faker.image.urlLoremFlickr({ category: 'cats' })),
     isFavorite: faker.datatype.boolean(),
     isPremium: faker.datatype.boolean(),
     location: {
@@ -50,6 +50,6 @@ function createOffer(): Offer {
   };
 }
 
-const offers: Offers = Array.from({ length: 8 }, createOffer);
+const offers: Offers = Array.from({ length: Math.floor(Math.random() * 11) }, createOffer);
 
 export { offers };

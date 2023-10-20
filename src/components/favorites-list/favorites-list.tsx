@@ -6,7 +6,6 @@ type FavoritesListProps = {
   offers: Offers;
 };
 
-
 function FavoritesList({ offers }: FavoritesListProps): JSX.Element {
 
   const favorites = getFavoritesListData(offers);

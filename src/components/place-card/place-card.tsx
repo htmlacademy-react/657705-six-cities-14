@@ -9,7 +9,7 @@ type PlaceCardProps = {
   isFavoriteCard: boolean;
 };
 
-function PlaceCard({ offer, isFavoriteCard = false, onMouseOver }: PlaceCardProps): JSX.Element {
+function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.Element {
   return (
     <article
       className={

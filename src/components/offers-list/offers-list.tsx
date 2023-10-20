@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Offer, Offers } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
-type PlacesListProps = {
+type OffersListProps = {
   offers: Offers;
 };
 
-function PlacesList({ offers }: PlacesListProps): JSX.Element {
+function OffersList({ offers }: OffersListProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<string | number>();
 
   useEffect(() => {
@@ -23,6 +23,7 @@ function PlacesList({ offers }: PlacesListProps): JSX.Element {
         <PlaceCard
           key={offer.id}
           offer={offer}
+          isFavoriteCard={false}
           onMouseOver={(activeOffer: Offer) => setActiveCard(activeOffer.id)}
         />
       ))}
@@ -30,4 +31,4 @@ function PlacesList({ offers }: PlacesListProps): JSX.Element {
   );
 }
 
-export default PlacesList;
+export default OffersList;
