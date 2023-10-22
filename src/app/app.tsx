@@ -1,28 +1,27 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
-import { AppRoute, AuthorizationStatus } from '../const';
-
-import Main from '../pages/main/main';
-import Favorites from '../pages/favorites/favorites';
-import Offer from '../pages/offer/offer';
-import Login from '../pages/login/login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../components/private-route/private-route';
+import { AppRoute, AuthorizationStatus } from '../const';
+import Favorites from '../pages/favorites/favorites';
+import Login from '../pages/login/login';
+import Main from '../pages/main/main';
+import TOffer from '../pages/offer/offer';
+import { TOffers } from '../types/offer';
 
 type AppProps = {
-  placesCount: number;
+  offers: TOffers;
 };
 
-function App({ placesCount }: AppProps): JSX.Element {
+function App({ offers }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<Main placesCount={placesCount} />}
+          element={<Main offers={offers} />}
         />
         <Route
           path={AppRoute.Offer}
-          element={<Offer />}
+          element={<TOffer offers={offers} />}
         />
         <Route
           path={AppRoute.Login}
@@ -32,7 +31,7 @@ function App({ placesCount }: AppProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites />
+              <Favorites offers={offers} />
             </PrivateRoute>
           }
         />

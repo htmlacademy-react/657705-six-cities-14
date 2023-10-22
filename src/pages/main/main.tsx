@@ -1,13 +1,15 @@
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import PlaceCard from '../../components/place-card/place-card';
+import OffersList from '../../components/offers-list/offers-list';
+
+import { TOffers } from '../../types/offer';
 
 type MainProps = {
-  placesCount: number;
+  offers: TOffers;
 };
 
-function Main({ placesCount }: MainProps): JSX.Element {
+function Main({ offers }: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header>
@@ -58,7 +60,7 @@ function Main({ placesCount }: MainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by </span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -74,9 +76,7 @@ function Main({ placesCount }: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul> */}
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-              </div>
+              <OffersList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

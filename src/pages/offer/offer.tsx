@@ -1,8 +1,25 @@
+import { Navigate, useParams } from 'react-router-dom';
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
+import { TOffer, TOffers } from '../../types/offer';
 
-function Offer(): JSX.Element {
+type OfferProps = {
+  offers: TOffers;
+};
+
+//TODO: Доделать вывод.Создайте новый компонент «Форма отправки комментария». Разметку для компонента вы найдёте в файле offer.html. Реализуйте сохранение введённых в форму данных в state компонента.
+
+function TOffer({ offers }: OfferProps): JSX.Element {
+
+  const { id } = useParams();
+  const currentOffer: TOffer | undefined = offers.find((offer) => offer.id === id);
+
+  if (!currentOffer) {
+    return <Navigate to={AppRoute.Main} />;
+  }
+
   return (
     <div className="page">
       <Header>
@@ -15,34 +32,24 @@ function Offer(): JSX.Element {
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/room.jpg" alt="Photo studio" />
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio" />
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio" />
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio" />
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio" />
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio" />
-              </div>
+              {currentOffer.images.map((image) => (
+                <div key={image} className="offer__image-wrapper">
+                  <img className="offer__image" src={image} alt="Photo studio" />
+                </div>
+              ))}
             </div>
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {
+                currentOffer.isPremium &&
+                <div className="offer__mark">
+                  <span>Premium</span>
+                </div>
+              }
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {currentOffer.title}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
@@ -334,4 +341,4 @@ function Offer(): JSX.Element {
   );
 }
 
-export default Offer;
+export default TOffer;
