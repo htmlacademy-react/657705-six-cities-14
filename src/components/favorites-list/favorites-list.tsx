@@ -1,9 +1,9 @@
-import { Offers } from '../../types/offer';
+import { TOffers } from '../../types/offer';
 import getFavoritesListData from '../../utils/favorites';
 import PlaceCard from '../place-card/place-card';
 
 type FavoritesListProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function FavoritesList({ offers }: FavoritesListProps): JSX.Element {

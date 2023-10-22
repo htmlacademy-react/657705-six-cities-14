@@ -3,10 +3,10 @@ import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import OffersList from '../../components/offers-list/offers-list';
 
-import { Offers } from '../../types/offer';
+import { TOffers } from '../../types/offer';
 
 type MainProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function Main({ offers }: MainProps): JSX.Element {

@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
 
-import { CityName, Offer, Offers, TypeName } from '../types/offer';
+import { TCityName, TOffer, TOffers, TTypeName } from '../types/offer';
 
-function createOffer(): Offer {
+function createOffer(): TOffer {
   return {
     bedrooms: faker.number.int(10),
     city: {
-      name: faker.helpers.arrayElement<CityName>(['Amsterdam', 'Brussels', 'Cologne', 'Dusseldorf', 'Hamburg', 'Paris']),
+      name: faker.helpers.arrayElement<TCityName>(['Amsterdam', 'Brussels', 'Cologne', 'Dusseldorf', 'Hamburg', 'Paris']),
       location: {
         longitude: faker.number.float({ max: 50, precision: 0.000001 }),
         latitude: faker.number.float({ max: 50, precision: 0.000001 }),
@@ -46,10 +46,10 @@ function createOffer(): Offer {
     price: faker.number.int(1000),
     rating: faker.number.float({ max: 5, precision: 0.1 }),
     title: faker.person.jobTitle(),
-    type: faker.helpers.arrayElement<TypeName>(['apartment', 'hotel', 'house', 'room'])
+    type: faker.helpers.arrayElement<TTypeName>(['apartment', 'hotel', 'house', 'room'])
   };
 }
 
-const offers: Offers = Array.from({ length: Math.floor(Math.random() * 11) }, createOffer);
+const offers: TOffers = Array.from({ length: Math.floor(Math.random() * 11) }, createOffer);
 
 export { offers };

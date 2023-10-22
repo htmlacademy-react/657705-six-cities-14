@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Offer, Offers } from '../../types/offer';
+import { TOffer, TOffers } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
 type OffersListProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function OffersList({ offers }: OffersListProps): JSX.Element {
@@ -24,7 +24,7 @@ function OffersList({ offers }: OffersListProps): JSX.Element {
           key={offer.id}
           offer={offer}
           isFavoriteCard={false}
-          onMouseOver={(activeOffer: Offer) => setActiveCard(activeOffer.id)}
+          onMouseOver={(activeOffer: TOffer) => setActiveCard(activeOffer.id)}
         />
       ))}
     </div>

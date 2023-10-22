@@ -2,10 +2,10 @@ import FavoritesList from '../../components/favorites-list/favorites-list';
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import { Offers } from '../../types/offer';
+import { TOffers } from '../../types/offer';
 
 type FavoritesProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function Favorites({ offers }: FavoritesProps): JSX.Element {

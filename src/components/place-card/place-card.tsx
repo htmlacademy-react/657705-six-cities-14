@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { Offer } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 import { capitalizeFirstCharacter } from '../../utils/utils';
 
 type PlaceCardProps = {
-  offer: Offer;
-  onMouseOver?: (activeOffer: Offer) => void;
+  offer: TOffer;
+  onMouseOver?: (activeOffer: TOffer) => void;
   isFavoriteCard: boolean;
 };
 

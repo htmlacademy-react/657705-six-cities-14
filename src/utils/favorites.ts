@@ -1,8 +1,8 @@
-import { Offer, Offers } from '../types/offer';
+import { TOffer, TOffers } from '../types/offer';
 
-function getFavoritesListData(offers: Offers) {
+function getFavoritesListData(offers: TOffers) {
   const cityList: {
-    [key: string]: Offer[];
+    [key: string]: TOffer[];
   } = {};
 
   const favoritesList = offers.filter((item) => item.isFavorite);

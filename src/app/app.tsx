@@ -4,11 +4,11 @@ import { AppRoute, AuthorizationStatus } from '../const';
 import Favorites from '../pages/favorites/favorites';
 import Login from '../pages/login/login';
 import Main from '../pages/main/main';
-import Offer from '../pages/offer/offer';
-import { Offers } from '../types/offer';
+import TOffer from '../pages/offer/offer';
+import { TOffers } from '../types/offer';
 
 type AppProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function App({ offers }: AppProps): JSX.Element {
@@ -21,7 +21,7 @@ function App({ offers }: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Offer}
-          element={<Offer offers={offers} />}
+          element={<TOffer offers={offers} />}
         />
         <Route
           path={AppRoute.Login}

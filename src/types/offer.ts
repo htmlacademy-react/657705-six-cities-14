@@ -1,45 +1,45 @@
-type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+type TCityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
 
-type TypeName = 'apartment' | 'room' | 'house' | 'hotel';
+type TTypeName = 'apartment' | 'room' | 'house' | 'hotel';
 
-type Host = {
+type THost = {
   avatarUrl: string;
   id: number | string; // FIXME: string для моков, потом только number
   isPro: boolean;
   name: string;
 };
 
-type MapLocation = {
+type TMapLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
 
-type City = {
-  location: MapLocation;
-  name: CityName;
+type TCity = {
+  location: TMapLocation;
+  name: TCityName;
 };
 
-type Offer = {
+type TOffer = {
   bedrooms: number;
-  city: City;
+  city: TCity;
   description: string;
   goods: string[];
-  host: Host;
+  host: THost;
   id: number | string; // FIXME: string для моков, потом только number
   images: string[];
   isFavorite: boolean;
   isPremium: boolean;
-  location: MapLocation;
+  location: TMapLocation;
   maxAdults: number;
   previewImage: string;
   price: number;
   rating: number;
   title: string;
-  type: TypeName;
+  type: TTypeName;
 };
 
-type Offers = Offer[];
+type TOffers = TOffer[];
 
-export type { Offer, Offers, CityName, TypeName };
+export type { TCityName, TOffer, TOffers, TTypeName };
