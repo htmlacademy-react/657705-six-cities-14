@@ -1,6 +1,6 @@
-import { Offer } from '../types/offer';
+import { TOffers } from '../types/offer';
 
-const Offers: Offer[] = [
+const offers: TOffers = [
   {
     city: {
       name: 'Dusseldorf',
@@ -222,4 +222,4 @@ const Offers: Offer[] = [
   }
 ];
 
-export { Offers };
+export { offers };

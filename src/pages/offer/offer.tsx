@@ -11,10 +11,10 @@ type OfferProps = {
 
 //TODO: Доделать вывод.Создайте новый компонент «Форма отправки комментария». Разметку для компонента вы найдёте в файле offer.html. Реализуйте сохранение введённых в форму данных в state компонента.
 
-function TOffer({ offers }: OfferProps): JSX.Element {
+function Offer({ offers }: OfferProps): JSX.Element {
 
   const { id } = useParams();
-  const currentOffer: TOffer | undefined = offers.find((offer) => offer.id === id);
+  const currentOffer: TOffer | undefined = offers.find((offer) => offer.id === Number(id));
 
   if (!currentOffer) {
     return <Navigate to={AppRoute.Main} />;
@@ -341,4 +341,4 @@ function TOffer({ offers }: OfferProps): JSX.Element {
   );
 }
 
-export default TOffer;
+export default Offer;

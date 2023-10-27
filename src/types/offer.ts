@@ -1,25 +1,9 @@
-type TCityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+import { TCity } from './city';
+import { THost } from './host';
+import { TMapLocation } from './map-location';
+import { offersTypes } from '../const';
 
-type TTypeName = 'apartment' | 'room' | 'house' | 'hotel';
-
-type THost = {
-  avatarUrl: string;
-  id: number | string; // FIXME: string для моков, потом только number
-  isPro: boolean;
-  name: string;
-};
-
-type TMapLocation = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
-
-type TCity = {
-  location: TMapLocation;
-  name: TCityName;
-};
+type TOfferType = typeof offersTypes[number];
 
 type TOffer = {
   bedrooms: number;
@@ -27,7 +11,7 @@ type TOffer = {
   description: string;
   goods: string[];
   host: THost;
-  id: number | string; // FIXME: string для моков, потом только number
+  id: number;
   images: string[];
   isFavorite: boolean;
   isPremium: boolean;
@@ -37,9 +21,7 @@ type TOffer = {
   price: number;
   rating: number;
   title: string;
-  type: TTypeName;
+  type: TOfferType;
 };
 
-type TOffers = TOffer[];
-
-export type { TCityName, TOffer, TOffers, TTypeName };
+export type { TOffer };

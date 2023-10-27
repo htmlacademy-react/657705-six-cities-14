@@ -9,13 +9,13 @@ type OffersListProps = {
 function OffersList({ offers }: OffersListProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<string | number>();
 
-  useEffect(() => {
-    if (activeCard) {
-      // FIXME: Не забыть убрать
-      // eslint-disable-next-line no-console
-      console.log('Активная карточка - ', activeCard);
-    }
-  }, [activeCard]);
+  // useEffect(() => {
+  //   if (activeCard) {
+  //     // FIXME: Не забыть убрать
+  //     // eslint-disable-next-line no-console
+  //     console.log('Активная карточка - ', activeCard);
+  //   }
+  // }, [activeCard]);
 
   return (
     <div className="cities__places-list places__list tabs__content">

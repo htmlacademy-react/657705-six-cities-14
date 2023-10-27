@@ -10,3 +10,11 @@ export const AuthorizationStatus = {
   NoAuth: 'NO_AUTH',
   Unknown: 'UNKNOWN'
 } as const;
+
+export const citys = [
+  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
+] as const;
+
+export const offersTypes = [
+  'apartment', 'room', 'house', 'hotel'
+] as const;

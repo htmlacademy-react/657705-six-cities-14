@@ -72,7 +72,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.description}</a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{capitalizeFirstCharacter(offer.type)}</p>
       </div>
