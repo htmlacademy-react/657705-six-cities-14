@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { TOffer, TOffers } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
 type OffersListProps = {
-  offers: TOffers;
+  offers: TOffer[];
 };
 
 function OffersList({ offers }: OffersListProps): JSX.Element {

@@ -1,20 +1,22 @@
 import { Navigate, useParams } from 'react-router-dom';
+
+import { AppRoute } from '../../const';
+import { TOffer } from '../../types/offer';
+
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import { AppRoute } from '../../const';
-import { TOffer, TOffers } from '../../types/offer';
 
 type OfferProps = {
-  offers: TOffers;
+  offers: TOffer[];
 };
 
 //TODO: Доделать вывод.Создайте новый компонент «Форма отправки комментария». Разметку для компонента вы найдёте в файле offer.html. Реализуйте сохранение введённых в форму данных в state компонента.
 
 function Offer({ offers }: OfferProps): JSX.Element {
 
-  const { id } = useParams();
-  const currentOffer: TOffer | undefined = offers.find((offer) => offer.id === Number(id));
+  const { offerId } = useParams();
+  const currentOffer: TOffer | undefined = offers.find((offer) => offer.id === Number(offerId));
 
   if (!currentOffer) {
     return <Navigate to={AppRoute.Main} />;

@@ -1,6 +1,6 @@
-import { TOffers } from '../types/offer';
+import { TOffer } from '../types/offer';
 
-const offers: TOffers = [
+const offers: TOffer[] = [
   {
     city: {
       name: 'Dusseldorf',
@@ -28,7 +28,7 @@ const offers: TOffers = [
       'https://14.react.pages.academy/static/offer/5.jpg'
     ],
     title: 'Waterfront with extraordinary view',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.8,
     type: 'room',
@@ -80,7 +80,7 @@ const offers: TOffers = [
       'https://14.react.pages.academy/static/offer/13.jpg'
     ],
     title: 'House in countryside',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.8,
     type: 'room',
@@ -133,7 +133,7 @@ const offers: TOffers = [
       'https://14.react.pages.academy/static/offer/12.jpg'
     ],
     title: 'Loft Studio in the Central Area',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.9,
     type: 'room',

@@ -8,4 +8,4 @@ type TCity = {
   name: TCityName;
 };
 
-export type { TCity };
+export type { TCity, TCityName };
