@@ -3,11 +3,11 @@ import { TOffer } from '../types/offer';
 const offers: TOffer[] = [
   {
     city: {
-      name: 'Dusseldorf',
+      name: 'Amsterdam',
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
-        zoom: 13
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 12
       }
     },
     previewImage: 'https://14.react.pages.academy/static/offer/3.jpg',
@@ -47,8 +47,8 @@ const offers: TOffer[] = [
     },
     description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
     location: {
-      latitude: 51.237402,
-      longitude: 6.779314,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     id: 1
@@ -100,18 +100,18 @@ const offers: TOffer[] = [
     },
     description: 'This is a place for dreamers to reset, reflect, and create. Designed with a \'slow\' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
     location: {
-      latitude: 52.385540000000006,
-      longitude: 4.902976,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     id: 2
   },
   {
     city: {
-      name: 'Brussels',
+      name: 'Amsterdam',
       location: {
-        latitude: 50.846557,
-        longitude: 4.351697,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
@@ -160,8 +160,8 @@ const offers: TOffer[] = [
     },
     description: 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
     location: {
-      latitude: 50.852557,
-      longitude: 4.3376969999999995,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 16
     },
     id: 3
@@ -214,8 +214,8 @@ const offers: TOffer[] = [
     },
     description: 'Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.',
     location: {
-      latitude: 52.361540000000005,
-      longitude: 4.883976,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 16
     },
     id: 4

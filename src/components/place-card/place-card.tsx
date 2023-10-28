@@ -7,7 +7,7 @@ import { AppRoute } from '../../const';
 
 type PlaceCardProps = {
   offer: TOffer;
-  onMouseOver?: (activeOffer: TOffer) => void;
+  onMouseOver?: (offerId: number) => void;
   isFavoriteCard: boolean;
 };
 
@@ -22,7 +22,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           'favorites__card': isFavoriteCard
         })
       }
-      onMouseOver={() => onMouseOver && onMouseOver(offer)}
+      onMouseOver={() => onMouseOver && onMouseOver(offer.id)}
     >
       {
         isPremium &&
