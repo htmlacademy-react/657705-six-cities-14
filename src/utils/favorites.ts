@@ -1,6 +1,6 @@
-import { TOffer, TOffers } from '../types/offer';
+import { TOffer } from '../types/offer';
 
-function getFavoritesListData(offers: TOffers) {
+function getFavoritesListData(offers: TOffer[]) {
   const cityList: {
     [key: string]: TOffer[];
   } = {};

@@ -1,15 +1,19 @@
-import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
+
 import { TOffer } from '../../types/offer';
 import { capitalizeFirstCharacter } from '../../utils/utils';
+import { AppRoute } from '../../const';
 
 type PlaceCardProps = {
   offer: TOffer;
-  onMouseOver?: (activeOffer: TOffer) => void;
+  onMouseOver?: (offerId: number) => void;
   isFavoriteCard: boolean;
 };
 
 function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.Element {
+  const { isPremium, isFavorite, id, price, title, type, previewImage } = offer;
+
   return (
     <article
       className={
@@ -18,11 +22,10 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           'favorites__card': isFavoriteCard
         })
       }
-      //FIXME: Другая проверка?
-      onMouseOver={() => onMouseOver && onMouseOver(offer)}
+      onMouseOver={() => onMouseOver && onMouseOver(offer.id)}
     >
       {
-        offer.isPremium &&
+        isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -35,8 +38,14 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           })
         }
       >
-        <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
+        <Link to={`${AppRoute.Offer}/${id}`}>
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={isFavoriteCard ? '150' : '260'}
+            height={isFavoriteCard ? '110' : '200'}
+            alt="Place image"
+          />
         </Link>
       </div>
       <div
@@ -48,13 +57,13 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
       >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
             className={
               cn('place-card__bookmark-button button', {
-                'place-card__bookmark-button--active': offer.isFavorite
+                'place-card__bookmark-button--active': isFavorite
               })
             }
             type="button"
@@ -72,9 +81,9 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.description}</a>
+          <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">{capitalizeFirstCharacter(offer.type)}</p>
+        <p className="place-card__type">{capitalizeFirstCharacter(type)}</p>
       </div>
     </article>
   );

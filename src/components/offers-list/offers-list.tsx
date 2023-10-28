@@ -1,22 +1,12 @@
-import { useEffect, useState } from 'react';
-import { TOffer, TOffers } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
 type OffersListProps = {
-  offers: TOffers;
+  offers: TOffer[];
+  onCardHover: (id: number) => void;
 };
 
-function OffersList({ offers }: OffersListProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<string | number>();
-
-  useEffect(() => {
-    if (activeCard) {
-      // FIXME: Не забыть убрать
-      // eslint-disable-next-line no-console
-      console.log('Активная карточка - ', activeCard);
-    }
-  }, [activeCard]);
-
+function OffersList({ offers, onCardHover }: OffersListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
@@ -24,7 +14,7 @@ function OffersList({ offers }: OffersListProps): JSX.Element {
           key={offer.id}
           offer={offer}
           isFavoriteCard={false}
-          onMouseOver={(activeOffer: TOffer) => setActiveCard(activeOffer.id)}
+          onMouseOver={(id: number) => onCardHover(id)}
         />
       ))}
     </div>

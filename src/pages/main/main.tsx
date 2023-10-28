@@ -1,15 +1,30 @@
+import { useState } from 'react';
+
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import OffersList from '../../components/offers-list/offers-list';
+import Map from '../../components/map/map';
 
-import { TOffers } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 
-type MainProps = {
-  offers: TOffers;
+type TMainProps = {
+  offers: TOffer[];
 };
 
-function Main({ offers }: MainProps): JSX.Element {
+function Main({ offers }: TMainProps): JSX.Element {
+  const [hoveredOffer, setHoveredOffer] = useState<TOffer | undefined>();
+
+  function handleCardHover(id: number) {
+    const currentOffer = offers.find((offer) => id === offer.id);
+
+    if (!currentOffer) {
+      return;
+    }
+
+    setHoveredOffer(currentOffer);
+  }
+
   return (
     <div className="page page--gray page--main">
       <Header>
@@ -69,17 +84,24 @@ function Main({ offers }: MainProps): JSX.Element {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                {/* <ul className="places__options places__options--custom places__options--opened">
+                {/* places__options--opened */}
+                <ul className="places__options places__options--custom">
                   <li className="places__option places__option--active" tabIndex={0}>Popular</li>
                   <li className="places__option" tabIndex={0}>Price: low to high</li>
                   <li className="places__option" tabIndex={0}>Price: high to low</li>
                   <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul> */}
+                </ul>
               </form>
-              <OffersList offers={offers} />
+              <OffersList
+                offers={offers}
+                onCardHover={handleCardHover}
+              />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                offers={offers}
+                hoveredOffer={hoveredOffer}
+              />
             </div>
           </div>
         </div>
