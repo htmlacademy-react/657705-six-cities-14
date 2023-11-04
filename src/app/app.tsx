@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../const';
-import { TOffer } from '../types/offer';
 
 import PrivateRoute from '../components/private-route/private-route';
 import Favorites from '../pages/favorites/favorites';
@@ -9,21 +8,17 @@ import Login from '../pages/login/login';
 import Main from '../pages/main/main';
 import Offer from '../pages/offer/offer';
 
-type AppProps = {
-  offers: TOffer[];
-};
-
-function App({ offers }: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<Main offers={offers} />}
+          element={<Main />}
         />
         <Route
           path={`${AppRoute.Offer}/:offerId`}
-          element={<Offer offers={offers} />}
+          element={<Offer />}
         />
         <Route
           path={AppRoute.Login}
@@ -33,7 +28,7 @@ function App({ offers }: AppProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites offers={offers} />
+              <Favorites />
             </PrivateRoute>
           }
         />

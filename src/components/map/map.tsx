@@ -7,6 +7,8 @@ import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { TOffer } from '../../types/offer';
 import useMap from '../../hooks/useMap';
 
+//FIXME: #4 - 1:26:00
+
 type TMapProps = {
   offers: TOffer[];
   hoveredOffer: TOffer | undefined;
