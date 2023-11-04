@@ -1,3 +1,5 @@
+import { TMapIcon } from './types/map';
+
 export const AppRoute = {
   Main: '/',
   Login: '/login',
@@ -19,8 +21,19 @@ export const offersTypes = [
   'apartment', 'room', 'house', 'hotel'
 ] as const;
 
-//TODO: Перенести в файлы
-
-export const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
-
-export const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+export const MapIconConfig: TMapIcon = {
+  Default: {
+    url: '/img/pin.svg',
+    width: 38,
+    height: 49,
+    anchorX: 19,
+    anchorY: 49
+  },
+  Active: {
+    url: '/img/pin-active.svg',
+    width: 38,
+    height: 49,
+    anchorX: 19,
+    anchorY: 49
+  }
+} as const;
