@@ -1,4 +1,12 @@
-import { TMapIcon } from './types/map';
+import { TMapIcon } from './types/map-icon';
+
+export const cities = [
+  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
+] as const;
+
+export const offersTypes = [
+  'apartment', 'room', 'house', 'hotel'
+] as const;
 
 export const AppRoute = {
   Main: '/',
@@ -12,14 +20,6 @@ export const AuthorizationStatus = {
   NoAuth: 'NO_AUTH',
   Unknown: 'UNKNOWN'
 } as const;
-
-export const citys = [
-  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
-] as const;
-
-export const offersTypes = [
-  'apartment', 'room', 'house', 'hotel'
-] as const;
 
 export const MapIconConfig: TMapIcon = {
   Default: {
@@ -37,3 +37,7 @@ export const MapIconConfig: TMapIcon = {
     anchorY: 49
   }
 } as const;
+
+export const CityName = Object.fromEntries(
+  cities.map((city) => [city, city])
+) as Record<typeof cities[number], typeof cities[number]>;

@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { MouseEvent } from 'react';
 
-import { citys } from '../../const';
+import { cities } from '../../const';
 import { TCityName } from '../../types/city';
 import { useAppDispatch } from '../../hooks';
 import { changeCity } from '../../store/action';
@@ -20,7 +20,7 @@ function TabsList({ cityName }: TTabsList): JSX.Element {
 
   return (
     <ul className="locations__list tabs__list">
-      {citys.map((city) => (
+      {cities.map((city) => (
         <li
           key={city}
           className="locations__item"

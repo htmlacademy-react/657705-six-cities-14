@@ -1,6 +1,6 @@
 import { Icon } from 'leaflet';
 
-import { TIconConfig } from '../types/map';
+import { TIconConfig } from '../types/map-icon';
 
 function createIcon(config: TIconConfig) {
   return new Icon({

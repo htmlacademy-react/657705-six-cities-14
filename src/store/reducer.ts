@@ -4,6 +4,7 @@ import { changeCity } from './action';
 import { TCityName } from '../types/city';
 import { TOffer } from '../types/offer';
 import { offers } from '../mocks/offers';
+import { CityName } from '../const';
 
 type TInitialState = {
   city: TCityName;
@@ -11,8 +12,8 @@ type TInitialState = {
 };
 
 const initialState: TInitialState = {
-  city: 'Paris',
-  offers: offers.filter((offer) => offer.city.name === 'Paris')
+  city: CityName.Paris,
+  offers: offers.filter((offer) => offer.city.name === CityName.Paris)
 };
 
 const reducer = createReducer(initialState, (builder) => {

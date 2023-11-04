@@ -13,6 +13,8 @@ function Main(): JSX.Element {
   const city = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
 
+  const offersIsEmpty: boolean = offers.length === 0;
+
   return (
     <div className="page page--gray page--main">
       <Header>
@@ -22,9 +24,11 @@ function Main(): JSX.Element {
         </>
       </Header>
       <main
-        className={cn('page__main page__main--index', {
-          'page__main--index-empty': offers.length === 0
-        })}
+        className={
+          cn('page__main page__main--index', {
+            'page__main--index-empty': offersIsEmpty
+          })
+        }
       >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -34,9 +38,9 @@ function Main(): JSX.Element {
         </div>
         <div className="cities">
           {
-            offers.length !== 0
-              ? <MainContent city={city} offers={offers} />
-              : <MainEmpty city={city} />
+            offersIsEmpty
+              ? <MainEmpty city={city} />
+              : <MainContent city={city} offers={offers} />
           }
         </div>
       </main>
