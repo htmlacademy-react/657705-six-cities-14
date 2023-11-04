@@ -11,9 +11,9 @@ import MainEmpty from '../../components/main-empty/main-empty';
 
 function Main(): JSX.Element {
   const city = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
+  const cityOffers = useAppSelector((state) => state.cityOffers);
 
-  const offersIsEmpty: boolean = offers.length === 0;
+  const offersIsEmpty: boolean = cityOffers.length === 0;
 
   return (
     <div className="page page--gray page--main">
@@ -40,7 +40,7 @@ function Main(): JSX.Element {
           {
             offersIsEmpty
               ? <MainEmpty city={city} />
-              : <MainContent city={city} offers={offers} />
+              : <MainContent city={city} offers={cityOffers} />
           }
         </div>
       </main>

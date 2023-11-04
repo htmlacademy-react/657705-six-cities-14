@@ -8,12 +8,14 @@ import { CityName } from '../const';
 
 type TInitialState = {
   city: TCityName;
+  cityOffers: TOffer[];
   offers: TOffer[];
 };
 
 const initialState: TInitialState = {
   city: CityName.Paris,
-  offers: offers.filter((offer) => offer.city.name === CityName.Paris)
+  cityOffers: offers.filter((offer) => offer.city.name === CityName.Paris),
+  offers
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -25,7 +27,7 @@ const reducer = createReducer(initialState, (builder) => {
     }
 
     state.city = city;
-    state.offers = offers.filter((offer) => offer.city.name === city);
+    state.cityOffers = offers.filter((offer) => offer.city.name === city);
   });
 });
 
