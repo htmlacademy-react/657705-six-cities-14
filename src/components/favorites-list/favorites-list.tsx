@@ -1,19 +1,16 @@
-import { TOffer } from '../../types/offer';
-import getFavoritesListData from '../../utils/favorites';
+import { useAppSelector } from '../../hooks';
+import getSortedByCityOffers from '../../utils/favorites';
 
 import PlaceCard from '../place-card/place-card';
 
-type FavoritesListProps = {
-  offers: TOffer[];
-};
 
-function FavoritesList({ offers }: FavoritesListProps): JSX.Element {
-
-  const favorites = getFavoritesListData(offers);
+function FavoritesList(): JSX.Element {
+  const favoritesOffers = useAppSelector((state) => state.offers);
+  const sortedByCityOffers = getSortedByCityOffers(favoritesOffers);
 
   return (
     <ul className="favorites__list">
-      {favorites.map(({ name, offersList, id }) => (
+      {sortedByCityOffers.map(({ name, offersList, id }) => (
         <li key={id} className="favorites__locations-items">
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">

@@ -356,7 +356,7 @@ const offers: TOffer[] = [
       'https://14.react.pages.academy/static/offer/7.jpg'
     ],
     title: 'Penthouse, 4-5 rooms + 5 balconies',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.8,
     type: 'house',
