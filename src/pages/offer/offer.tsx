@@ -6,16 +6,14 @@ import { TOffer } from '../../types/offer';
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-
-type OfferProps = {
-  offers: TOffer[];
-};
+import { useAppSelector } from '../../hooks';
 
 //TODO: Доделать вывод.Создайте новый компонент «Форма отправки комментария». Разметку для компонента вы найдёте в файле offer.html. Реализуйте сохранение введённых в форму данных в state компонента.
 
-function Offer({ offers }: OfferProps): JSX.Element {
+function Offer(): JSX.Element {
 
   const { offerId } = useParams();
+  const offers = useAppSelector((state) => state.offers);
   const currentOffer: TOffer | undefined = offers.find((offer) => offer.id === Number(offerId));
 
   if (!currentOffer) {

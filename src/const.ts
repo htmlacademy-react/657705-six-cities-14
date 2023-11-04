@@ -1,3 +1,13 @@
+import { TMapIcon } from './types/map-icon';
+
+export const cities = [
+  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
+] as const;
+
+export const offersTypes = [
+  'apartment', 'room', 'house', 'hotel'
+] as const;
+
 export const AppRoute = {
   Main: '/',
   Login: '/login',
@@ -11,14 +21,23 @@ export const AuthorizationStatus = {
   Unknown: 'UNKNOWN'
 } as const;
 
-export const citys = [
-  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
-] as const;
+export const MapIconConfig: TMapIcon = {
+  Default: {
+    url: '/img/pin.svg',
+    width: 38,
+    height: 49,
+    anchorX: 19,
+    anchorY: 49
+  },
+  Active: {
+    url: '/img/pin-active.svg',
+    width: 38,
+    height: 49,
+    anchorX: 19,
+    anchorY: 49
+  }
+} as const;
 
-export const offersTypes = [
-  'apartment', 'room', 'house', 'hotel'
-] as const;
-
-export const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
-
-export const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+export const CityName = Object.fromEntries(
+  cities.map((city) => [city, city])
+) as Record<typeof cities[number], typeof cities[number]>;

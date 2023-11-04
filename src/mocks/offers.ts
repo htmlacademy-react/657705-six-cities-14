@@ -219,6 +219,223 @@ const offers: TOffer[] = [
       zoom: 16
     },
     id: 4
+  },
+  {
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://14.react.pages.academy/static/offer/15.jpg',
+    images: [
+      'https://14.react.pages.academy/static/offer/2.jpg',
+      'https://14.react.pages.academy/static/offer/10.jpg',
+      'https://14.react.pages.academy/static/offer/11.jpg',
+      'https://14.react.pages.academy/static/offer/15.jpg',
+      'https://14.react.pages.academy/static/offer/4.jpg',
+      'https://14.react.pages.academy/static/offer/20.jpg',
+      'https://14.react.pages.academy/static/offer/16.jpg',
+      'https://14.react.pages.academy/static/offer/18.jpg',
+      'https://14.react.pages.academy/static/offer/5.jpg',
+      'https://14.react.pages.academy/static/offer/1.jpg',
+      'https://14.react.pages.academy/static/offer/6.jpg',
+      'https://14.react.pages.academy/static/offer/3.jpg',
+      'https://14.react.pages.academy/static/offer/14.jpg',
+      'https://14.react.pages.academy/static/offer/8.jpg'
+    ],
+    title: 'Waterfront with extraordinary view',
+    isFavorite: false,
+    isPremium: false,
+    rating: 4.4,
+    type: 'apartment',
+    bedrooms: 2,
+    maxAdults: 8,
+    price: 361,
+    goods: [
+      'Washer',
+      'Baby seat',
+      'Laptop friendly workspace',
+      'Breakfast',
+      'Air conditioning',
+      'Fridge',
+      'Towels'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    location: {
+      latitude: 48.84761,
+      longitude: 2.356499,
+      zoom: 16
+    },
+    id: 32
+  },
+  {
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://14.react.pages.academy/static/offer/11.jpg',
+    images: [
+      'https://14.react.pages.academy/static/offer/1.jpg',
+      'https://14.react.pages.academy/static/offer/10.jpg',
+      'https://14.react.pages.academy/static/offer/20.jpg',
+      'https://14.react.pages.academy/static/offer/12.jpg',
+      'https://14.react.pages.academy/static/offer/4.jpg',
+      'https://14.react.pages.academy/static/offer/2.jpg',
+      'https://14.react.pages.academy/static/offer/19.jpg',
+      'https://14.react.pages.academy/static/offer/16.jpg',
+      'https://14.react.pages.academy/static/offer/9.jpg',
+      'https://14.react.pages.academy/static/offer/17.jpg',
+      'https://14.react.pages.academy/static/offer/11.jpg',
+      'https://14.react.pages.academy/static/offer/18.jpg',
+      'https://14.react.pages.academy/static/offer/3.jpg',
+      'https://14.react.pages.academy/static/offer/15.jpg'
+    ],
+    title: 'Penthouse, 4-5 rooms + 5 balconies',
+    isFavorite: false,
+    isPremium: true,
+    rating: 2.2,
+    type: 'room',
+    bedrooms: 1,
+    maxAdults: 2,
+    price: 138,
+    goods: [
+      'Laptop friendly workspace',
+      'Breakfast'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
+    location: {
+      latitude: 48.858610000000006,
+      longitude: 2.330499,
+      zoom: 16
+    },
+    id: 35
+  },
+  {
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://14.react.pages.academy/static/offer/3.jpg',
+    images: [
+      'https://14.react.pages.academy/static/offer/11.jpg',
+      'https://14.react.pages.academy/static/offer/20.jpg',
+      'https://14.react.pages.academy/static/offer/6.jpg',
+      'https://14.react.pages.academy/static/offer/10.jpg',
+      'https://14.react.pages.academy/static/offer/4.jpg',
+      'https://14.react.pages.academy/static/offer/13.jpg',
+      'https://14.react.pages.academy/static/offer/2.jpg',
+      'https://14.react.pages.academy/static/offer/17.jpg',
+      'https://14.react.pages.academy/static/offer/18.jpg',
+      'https://14.react.pages.academy/static/offer/12.jpg',
+      'https://14.react.pages.academy/static/offer/5.jpg',
+      'https://14.react.pages.academy/static/offer/1.jpg',
+      'https://14.react.pages.academy/static/offer/9.jpg',
+      'https://14.react.pages.academy/static/offer/7.jpg'
+    ],
+    title: 'Penthouse, 4-5 rooms + 5 balconies',
+    isFavorite: true,
+    isPremium: true,
+    rating: 4.8,
+    type: 'house',
+    bedrooms: 2,
+    maxAdults: 5,
+    price: 199,
+    goods: [
+      'Towels',
+      'Washer',
+      'Baby seat',
+      'Laptop friendly workspace',
+      'Breakfast',
+      'Air conditioning'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.',
+    location: {
+      latitude: 48.87861,
+      longitude: 2.357499,
+      zoom: 16
+    },
+    id: 41
+  },
+  {
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://14.react.pages.academy/static/offer/16.jpg',
+    images: [
+      'https://14.react.pages.academy/static/offer/2.jpg',
+      'https://14.react.pages.academy/static/offer/16.jpg',
+      'https://14.react.pages.academy/static/offer/3.jpg',
+      'https://14.react.pages.academy/static/offer/8.jpg',
+      'https://14.react.pages.academy/static/offer/10.jpg',
+      'https://14.react.pages.academy/static/offer/6.jpg',
+      'https://14.react.pages.academy/static/offer/13.jpg',
+      'https://14.react.pages.academy/static/offer/14.jpg',
+      'https://14.react.pages.academy/static/offer/9.jpg',
+      'https://14.react.pages.academy/static/offer/17.jpg',
+      'https://14.react.pages.academy/static/offer/11.jpg',
+      'https://14.react.pages.academy/static/offer/7.jpg',
+      'https://14.react.pages.academy/static/offer/1.jpg',
+      'https://14.react.pages.academy/static/offer/15.jpg'
+    ],
+    title: 'Wood and stone place',
+    isFavorite: false,
+    isPremium: false,
+    rating: 2.2,
+    type: 'room',
+    bedrooms: 1,
+    maxAdults: 2,
+    price: 118,
+    goods: [
+      'Breakfast',
+      'Laptop friendly workspace'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    location: {
+      latitude: 48.83861,
+      longitude: 2.350499,
+      zoom: 16
+    },
+    id: 43
   }
 ];
 

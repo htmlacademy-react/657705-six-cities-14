@@ -1,35 +1,34 @@
 import { useEffect, useRef } from 'react';
-import { Icon, Marker, layerGroup } from 'leaflet';
+import { LatLngLiteral, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 
 import { TOffer } from '../../types/offer';
 import useMap from '../../hooks/useMap';
+import { createIcon } from '../../utils/map';
+import { MapIconConfig } from '../../const';
 
 type TMapProps = {
   offers: TOffer[];
   hoveredOffer: TOffer | undefined;
 };
 
-const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
-
-const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
-
 function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap({
-    mapRef,
-    city: offers[0].city
-  });
+  const map = useMap(mapRef);
+
+  useEffect(() => {
+    if (map) {
+      const mapLatLng: LatLngLiteral = {
+        lat: offers[0].city.location.latitude,
+        lng:  offers[0].city.location.longitude
+      };
+
+      const mapZoom = offers[0].city.location.zoom;
+
+      map.setView(mapLatLng, mapZoom);
+
+    }
+  }, [map, offers]);
 
   useEffect(() => {
     if (map) {
@@ -43,8 +42,8 @@ function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
 
         const currentIcon =
           (id === hoveredOffer?.id)
-            ? currentCustomIcon
-            : defaultCustomIcon;
+            ? createIcon(MapIconConfig.Active)
+            : createIcon(MapIconConfig.Default);
 
         marker.setIcon(currentIcon).addTo(markerLayer);
       });

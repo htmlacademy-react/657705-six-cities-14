@@ -1,7 +1,7 @@
-import { citys } from '../const';
+import { cities } from '../const';
 import { TMapLocation } from './map-location';
 
-type TCityName = typeof citys[number];
+type TCityName = typeof cities[number];
 
 type TCity = {
   location: TMapLocation;
