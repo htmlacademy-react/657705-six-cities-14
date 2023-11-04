@@ -23,6 +23,10 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>) {
 
       setMap(instance);
       isRenderedRef.current = true;
+
+      return () => {
+        instance.remove();
+      };
     }
   }, [mapRef]);
 

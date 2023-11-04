@@ -6,8 +6,6 @@ import { TCityName } from '../../types/city';
 import { useAppDispatch } from '../../hooks';
 import { changeCity } from '../../store/action';
 
-//tabs__item--active
-
 type TTabsList = {
   cityName: TCityName;
 };
