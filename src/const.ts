@@ -1,5 +1,10 @@
 import { TMapIcon } from './types/map-icon';
 
+//FIXME: Разбить на разные файлы?
+
+export const BASE_URL = 'https://14.react.pages.academy/six-cities';
+export const REQUEST_TIMEOUT = 5000;
+
 export const cities = [
   'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
