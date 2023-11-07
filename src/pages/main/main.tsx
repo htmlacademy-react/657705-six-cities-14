@@ -8,10 +8,11 @@ import { useAppSelector } from '../../hooks';
 import TabsList from '../../components/tabs-list/tabs-list';
 import MainContent from '../../components/main-content/main-content';
 import MainEmpty from '../../components/main-empty/main-empty';
+import { selectOffersByCity } from '../../store/selectors';
 
 function Main(): JSX.Element {
   const city = useAppSelector((state) => state.city);
-  const cityOffers = useAppSelector((state) => state.cityOffers);
+  const cityOffers = useAppSelector(selectOffersByCity);
 
   const offersIsEmpty: boolean = cityOffers.length === 0;
 
