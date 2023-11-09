@@ -2,7 +2,7 @@ import { TMapIcon } from './types/map-icon';
 
 //FIXME: Разбить на разные файлы?
 
-export const BASE_URL = 'https://14.react.pages.academy/six-cities';
+export const BASE_URL = 'https://14.design.pages.academy';
 export const REQUEST_TIMEOUT = 5000;
 
 export const cities = [
@@ -21,7 +21,7 @@ export const AppRoute = {
 } as const;
 
 export const APIRoute = {
-  Offers: '/offers'
+  Offers: '/six-cities/offers'
 } as const;
 
 export const AuthorizationStatus = {
