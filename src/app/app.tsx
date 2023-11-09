@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute } from '../const';
 
 import { useAppSelector } from '../hooks';
 import PrivateRoute from '../components/private-route/private-route';
@@ -12,6 +12,7 @@ import LoadingScreen from '../pages/loading-screen/loading-screen';
 
 function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   //FIXME: Перенести в компоненты?
   if (isOffersDataLoading) {
@@ -36,7 +37,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <Favorites />
             </PrivateRoute>
           }

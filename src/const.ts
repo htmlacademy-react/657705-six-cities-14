@@ -22,7 +22,7 @@ export const AppRoute = {
 
 export const APIRoute = {
   Offers: '/six-cities/offers',
-  Login: '/six-cities/login'
+  Login: '/six-cities/login',
 } as const;
 
 export const AuthorizationStatus = {

@@ -5,6 +5,9 @@ import { AppDispatch, State } from '../types/state';
 import { TOffer } from '../types/offer';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { loadOffers, requireAuthorization, setOffersDataLoadingStatus } from './action';
+import { TAuthData } from '../types/auth-data';
+import { TUserData } from '../types/user-data';
+import { saveToken } from '../services/token';
 
 const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -36,4 +39,17 @@ const fetchCheckAuthAction = createAsyncThunk<void, undefined, {
   }
 );
 
-export {fetchOffersAction, fetchCheckAuthAction};
+const fetchLoginAction = createAsyncThunk<void, TAuthData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/checkAuth',
+  async ({email, password}, {dispatch, extra: api}) => {
+    const {data: {token}} = await api.post<TUserData>(APIRoute.Login, {email, password});
+    saveToken(token);
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+  }
+);
+
+export {fetchOffersAction, fetchCheckAuthAction, fetchLoginAction};
