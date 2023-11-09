@@ -5,23 +5,26 @@ import { offersTypes } from '../const';
 
 type TOfferType = typeof offersTypes[number];
 
-type TOffer = {
-  bedrooms: number;
+type TOfferPreview = {
+  id: string;
+  title: string;
+  type: TOfferType;
+  price: number;
   city: TCity;
+  location: TMapLocation;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+  previewImage: string;
+};
+
+type TOffer = TOfferPreview & {
+  bedrooms: number;
   description: string;
   goods: string[];
   host: THost;
-  id: number;
   images: string[];
-  isFavorite: boolean;
-  isPremium: boolean;
-  location: TMapLocation;
   maxAdults: number;
-  previewImage: string;
-  price: number;
-  rating: number;
-  title: string;
-  type: TOfferType;
-};
+}
 
-export type { TOffer };
+export type { TOffer, TOfferPreview };

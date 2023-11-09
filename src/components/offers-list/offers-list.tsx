@@ -3,7 +3,7 @@ import PlaceCard from '../place-card/place-card';
 
 type OffersListProps = {
   offers: TOffer[];
-  onCardHover: (id: number) => void;
+  onCardHover: (id: string) => void;
 };
 
 function OffersList({ offers, onCardHover }: OffersListProps): JSX.Element {
@@ -14,7 +14,7 @@ function OffersList({ offers, onCardHover }: OffersListProps): JSX.Element {
           key={offer.id}
           offer={offer}
           isFavoriteCard={false}
-          onMouseOver={(id: number) => onCardHover(id)}
+          onMouseOver={(id: string) => onCardHover(id)}
         />
       ))}
     </div>

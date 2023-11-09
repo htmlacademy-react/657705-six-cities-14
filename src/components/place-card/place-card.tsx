@@ -7,7 +7,7 @@ import { AppRoute } from '../../const';
 
 type PlaceCardProps = {
   offer: TOffer;
-  onMouseOver?: (offerId: number) => void;
+  onMouseOver?: (offerId: string) => void;
   isFavoriteCard: boolean;
 };
 

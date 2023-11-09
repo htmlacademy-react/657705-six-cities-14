@@ -11,9 +11,10 @@ type TMainContentProps = {
 }
 
 function MainContent({city, offers}: TMainContentProps): JSX.Element {
+  //FIXME: Обнулять при смене города
   const [hoveredOffer, setHoveredOffer] = useState<TOffer | undefined>();
 
-  function handleCardHover(id: number) {
+  function handleCardHover(id: string) {
     const currentOffer = offers.find((offer) => id === offer.id);
 
     if (!currentOffer) {

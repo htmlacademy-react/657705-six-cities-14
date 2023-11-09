@@ -1,5 +1,10 @@
 import { TMapIcon } from './types/map-icon';
 
+//FIXME: Разбить на разные файлы?
+
+export const BASE_URL = 'https://14.design.pages.academy';
+export const REQUEST_TIMEOUT = 5000;
+
 export const cities = [
   'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
@@ -13,6 +18,10 @@ export const AppRoute = {
   Login: '/login',
   Favorites: '/favorites',
   Offer: '/offer'
+} as const;
+
+export const APIRoute = {
+  Offers: '/six-cities/offers'
 } as const;
 
 export const AuthorizationStatus = {
