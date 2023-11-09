@@ -25,6 +25,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(changeCity, (state, action) => {
       const {city} = action.payload;
 
+      //FIXME: Убрать?
       if (city === state.city) {
         return;
       }

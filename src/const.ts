@@ -21,7 +21,8 @@ export const AppRoute = {
 } as const;
 
 export const APIRoute = {
-  Offers: '/six-cities/offers'
+  Offers: '/six-cities/offers',
+  Login: '/six-cities/login'
 } as const;
 
 export const AuthorizationStatus = {
