@@ -5,7 +5,7 @@ import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { fetchLoginAction } from '../../store/api-actions';
+// import { fetchLoginAction } from '../../store/api-actions';
 
 function Login(): ReactElement {
   const dispath = useAppDispatch();

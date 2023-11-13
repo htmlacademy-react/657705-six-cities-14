@@ -4,7 +4,7 @@ import { MouseEvent } from 'react';
 import { cities } from '../../const';
 import { TCityName } from '../../types/city';
 import { useAppDispatch } from '../../hooks';
-import { changeCity } from '../../store/action';
+import { changeCity } from '../../store/offers/offers-slice';
 
 type TTabsList = {
   cityName: TCityName;

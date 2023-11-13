@@ -13,6 +13,11 @@ export const offersTypes = [
   'apartment', 'room', 'house', 'hotel'
 ] as const;
 
+export const NameSpace = {
+  Offers: 'OFFERS',
+  User: 'USER'
+} as const;
+
 export const AppRoute = {
   Main: '/',
   Login: '/login',

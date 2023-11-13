@@ -9,7 +9,7 @@ import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/user-data';
 import { saveToken } from '../services/token';
 
-const fetchOffersAction = createAsyncThunk<void, undefined, {
+const fetchOffers = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -52,4 +52,4 @@ const fetchLoginAction = createAsyncThunk<void, TAuthData, {
   }
 );
 
-export {fetchOffersAction, fetchCheckAuthAction, fetchLoginAction};
+// export {fetchOffers, fetchCheckAuthAction, fetchLoginAction};
