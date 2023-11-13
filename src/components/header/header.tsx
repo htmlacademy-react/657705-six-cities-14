@@ -1,8 +1,10 @@
-type HeaderProps = {
-  children: JSX.Element;
+import { ReactNode } from 'react';
+
+type THeaderProps = {
+  children: ReactNode;
 };
 
-function Header({ children }: HeaderProps): JSX.Element {
+function Header({ children }: THeaderProps): ReactNode {
   return (
     <header className="header">
       <div className="container">

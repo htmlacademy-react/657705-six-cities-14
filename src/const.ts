@@ -6,7 +6,7 @@ export const BASE_URL = 'https://14.design.pages.academy';
 export const REQUEST_TIMEOUT = 5000;
 
 export const cities = [
-  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
+  'Paris', 'Cologne', 'Brussels', 'Amsterdama', 'Hamburg', 'Dusseldorf'
 ] as const;
 
 export const offersTypes = [

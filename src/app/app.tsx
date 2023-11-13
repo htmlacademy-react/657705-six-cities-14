@@ -8,16 +8,10 @@ import Favorites from '../pages/favorites/favorites';
 import Login from '../pages/login/login';
 import Main from '../pages/main/main';
 import Offer from '../pages/offer/offer';
-import LoadingScreen from '../pages/loading-screen/loading-screen';
 
 function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
-  //FIXME: Перенести в компоненты?
-  if (isOffersDataLoading) {
-    return <LoadingScreen />;
-  }
 
   return (
     <BrowserRouter>
