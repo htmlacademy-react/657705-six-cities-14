@@ -9,12 +9,14 @@ import { fetchOffers } from './offers-action';
 type TInitialState = {
   city: TCityName;
   data: TOffer[];
+  activeOffer: TOffer['id'] | null;
   loading: boolean;
 };
 
 const initialState: TInitialState = {
   city: CityName.Paris,
   data: [],
+  activeOffer: null,
   loading: false
 };
 
@@ -25,6 +27,10 @@ const offersSlice = createSlice({
     changeCity: (state, action: PayloadAction<{ city: TCityName }>) => {
       const {city} = action.payload;
       state.city = city;
+    },
+    changeActiveOffer: (state, action: PayloadAction<{id: TOffer['id'] | null}>) => {
+      const {id} = action.payload;
+      state.activeOffer = id;
     }
   },
   extraReducers(builder) {
@@ -46,4 +52,4 @@ const offersSlice = createSlice({
 });
 
 export {offersSlice};
-export const {changeCity} = offersSlice.actions;
+export const {changeCity, changeActiveOffer} = offersSlice.actions;

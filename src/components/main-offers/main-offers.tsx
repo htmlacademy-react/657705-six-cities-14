@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { TCityName } from '../../types/city';
 import { TOffer } from '../../types/offer';
 import OffersList from '../offers-list/offers-list';
@@ -11,19 +9,6 @@ type TMainContentProps = {
 }
 
 function MainOffers({city, offers}: TMainContentProps): JSX.Element {
-  //FIXME: Обнулять при смене города
-  const [hoveredOffer, setHoveredOffer] = useState<TOffer | undefined>();
-
-  function handleCardHover(id: string) {
-    const currentOffer = offers.find((offer) => id === offer.id);
-
-    if (!currentOffer) {
-      return;
-    }
-
-    setHoveredOffer(currentOffer);
-  }
-
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -47,13 +32,11 @@ function MainOffers({city, offers}: TMainContentProps): JSX.Element {
         </form>
         <OffersList
           offers={offers}
-          onCardHover={handleCardHover}
         />
       </section>
       <div className="cities__right-section">
         <Map
           offers={offers}
-          hoveredOffer={hoveredOffer}
         />
       </div>
     </div>

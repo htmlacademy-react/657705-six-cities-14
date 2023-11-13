@@ -22,7 +22,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           'favorites__card': isFavoriteCard
         })
       }
-      onMouseOver={() => onMouseOver && onMouseOver(offer.id)}
+      onMouseOver={() => onMouseOver && onMouseOver(id)}
     >
       {
         isPremium &&

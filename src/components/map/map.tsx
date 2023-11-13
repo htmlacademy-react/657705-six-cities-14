@@ -6,15 +6,18 @@ import { TOffer } from '../../types/offer';
 import useMap from '../../hooks/useMap';
 import { createIcon } from '../../utils/map';
 import { MapIconConfig } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { selectActiveOffer } from '../../store/offers/offers-selector';
 
 type TMapProps = {
   offers: TOffer[];
-  hoveredOffer: TOffer | undefined;
 };
 
-function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
+function Map({ offers }: TMapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef);
+
+  const hoveredOffer = useAppSelector(selectActiveOffer);
 
   useEffect(() => {
     if (map) {
@@ -41,7 +44,7 @@ function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
         });
 
         const currentIcon =
-          (id === hoveredOffer?.id)
+          (id === hoveredOffer)
             ? createIcon(MapIconConfig.Active)
             : createIcon(MapIconConfig.Default);
 
