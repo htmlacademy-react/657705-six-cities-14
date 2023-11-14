@@ -90,7 +90,9 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Offer}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstCharacter(type)}</p>
       </div>

@@ -3,13 +3,14 @@ import { toast } from 'react-toastify';
 
 import { CityName, NameSpace } from '../../const';
 import { TCityName } from '../../types/city';
-import { TOffer } from '../../types/offer';
-import { fetchOffers } from './offers-action';
+import { TOffer, TOfferPreview } from '../../types/offer';
+import { fetchOffers, fetchOffer } from './offers-action';
 
 type TInitialState = {
   city: TCityName;
-  data: TOffer[];
-  activeOffer: TOffer['id'] | null;
+  data: TOfferPreview[];
+  activeOffer: TOfferPreview['id'] | null;
+  currentOffer: TOffer | null;
   loading: boolean;
 };
 
@@ -17,6 +18,7 @@ const initialState: TInitialState = {
   city: CityName.Paris,
   data: [],
   activeOffer: null,
+  currentOffer: null,
   loading: false
 };
 
@@ -31,8 +33,15 @@ const offersSlice = createSlice({
     changeActiveOffer: (state, action: PayloadAction<{id: TOffer['id'] | null}>) => {
       const {id} = action.payload;
       state.activeOffer = id;
+    },
+    dropOffer: (state) => {
+      state.currentOffer = null;
+    },
+    dropOffers: (state) => {
+      state.data = [];
     }
   },
+  //TODO: Сделать матчер
   extraReducers(builder) {
     builder
       .addCase(fetchOffers.pending, (state) => {
@@ -47,9 +56,27 @@ const offersSlice = createSlice({
 
         state.loading = false;
         toast.error(error.message);
+      })
+      .addCase(fetchOffer.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchOffer.fulfilled, (state, action) => {
+        state.currentOffer = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchOffer.rejected, (state, action) => {
+        const {error} = action;
+
+        state.loading = false;
+        toast.error(error.message);
       });
   }
 });
 
 export {offersSlice};
-export const {changeCity, changeActiveOffer} = offersSlice.actions;
+export const {
+  changeCity,
+  changeActiveOffer,
+  dropOffer,
+  dropOffers
+} = offersSlice.actions;

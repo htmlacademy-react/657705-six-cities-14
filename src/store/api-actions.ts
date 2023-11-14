@@ -4,7 +4,7 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../types/state';
 import { TOffer } from '../types/offer';
 import { APIRoute, AuthorizationStatus } from '../const';
-import { loadOffers, requireAuthorization, setOffersDataLoadingStatus } from './action';
+// import { loadOffers, requireAuthorization, setOffersDataLoadingStatus } from './action';
 import { TAuthData } from '../types/auth-data';
 import { TUserData } from '../types/user-data';
 import { saveToken } from '../services/token';
@@ -52,4 +52,4 @@ const fetchLoginAction = createAsyncThunk<void, TAuthData, {
   }
 );
 
-// export {fetchOffers, fetchCheckAuthAction, fetchLoginAction};
+export {fetchOffers, fetchCheckAuthAction, fetchLoginAction};

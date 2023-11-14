@@ -6,6 +6,7 @@ import { selectOffersByCity } from '../../store/offers/offers-selector';
 import Loading from '../loading/loading';
 import MainEmpty from '../main-empty/main-empty';
 import MainOffers from '../main-offers/main-offers';
+import { dropOffers } from '../../store/offers/offers-slice';
 
 type TMainContentProps = {
   setIsOffersEmpty: (state: boolean) => void;
@@ -18,6 +19,9 @@ function MainContent({setIsOffersEmpty}: TMainContentProps) {
 
   useEffect(() => {
     dispatch(fetchOffers());
+    return () => {
+      dispatch(dropOffers());
+    };
   }, [dispatch]);
 
   useEffect(() => {

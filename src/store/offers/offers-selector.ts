@@ -8,9 +8,17 @@ const selectDataLoading = (state: State) => state[NameSpace.Offers].loading;
 
 const selectActiveOffer = (state: State) => state[NameSpace.Offers].activeOffer;
 
+const selectOffer = (state: State) => state[NameSpace.Offers].currentOffer;
+
 const selectOffersByCity = createSelector(
   [(state: State) => state[NameSpace.Offers].city, (state: State) => state[NameSpace.Offers].data],
   (city, offers) => offers.filter((offer) => offer.city.name === city)
 );
 
-export {selectOffersByCity, selectCity, selectDataLoading, selectActiveOffer};
+export {
+  selectOffersByCity,
+  selectCity,
+  selectDataLoading,
+  selectActiveOffer,
+  selectOffer
+};

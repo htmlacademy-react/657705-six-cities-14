@@ -27,6 +27,7 @@ function SortList({offers, onChange}: TSortListProps) {
 
   useEffect(() => {
     setActiveSortType(SortType.Popular);
+    setIsOpened(false);
   }, [offers]);
 
   return (

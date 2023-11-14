@@ -4,9 +4,10 @@ import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
 import HeaderAuth from '../header-auth/header-auth';
 import HeaderNoAuth from '../header-no-auth/header-no-auth';
+import { selectAuthStatus } from '../../store/user/user-selector';
 
 function HeaderNav(): ReactNode {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(selectAuthStatus);
 
   return (
     <nav className="header__nav">
