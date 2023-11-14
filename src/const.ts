@@ -13,6 +13,13 @@ export const offersTypes = [
   'apartment', 'room', 'house', 'hotel'
 ] as const;
 
+export const SortType = {
+  Popular: 'Popular',
+  LowToHigh: 'Price: low to high',
+  HighToLow: 'Price: high to low',
+  TopRated: 'Top rated first'
+} as const;
+
 export const NameSpace = {
   Offers: 'OFFERS',
   User: 'USER'

@@ -1,18 +1,18 @@
 import { ReactNode } from 'react';
 
-import { TOffer } from '../../types/offer';
+import { TOfferPreview } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 import { useAppDispatch } from '../../hooks';
 import { changeActiveOffer } from '../../store/offers/offers-slice';
 
 type TOffersListProps = {
-  offers: TOffer[];
+  offers: TOfferPreview[];
 };
 
 function OffersList({ offers }: TOffersListProps): ReactNode {
   const dispatch = useAppDispatch();
 
-  function onCardHover(id: TOffer['id']) {
+  function onCardHover(id: TOfferPreview['id']) {
     dispatch(changeActiveOffer({id}));
   }
 
@@ -23,7 +23,7 @@ function OffersList({ offers }: TOffersListProps): ReactNode {
           key={offer.id}
           offer={offer}
           isFavoriteCard={false}
-          onMouseOver={(id: TOffer['id']) => onCardHover(id)}
+          onMouseOver={(id: TOfferPreview['id']) => onCardHover(id)}
         />
       ))}
     </div>

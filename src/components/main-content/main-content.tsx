@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffers } from '../../store/offers/offers-action';
-import { selectCity, selectOffersByCity } from '../../store/offers/offers-selector';
+import { selectOffersByCity } from '../../store/offers/offers-selector';
 import Loading from '../loading/loading';
 import MainEmpty from '../main-empty/main-empty';
 import MainOffers from '../main-offers/main-offers';
@@ -14,7 +14,6 @@ type TMainContentProps = {
 function MainContent({setIsOffersEmpty}: TMainContentProps) {
   const dispatch = useAppDispatch();
 
-  const city = useAppSelector(selectCity);
   const offersByCity = useAppSelector(selectOffersByCity);
 
   useEffect(() => {
@@ -33,8 +32,8 @@ function MainContent({setIsOffersEmpty}: TMainContentProps) {
     <Loading>
       {
         offersByCity.length === 0
-          ? <MainEmpty city={city} />
-          : <MainOffers city={city} offers={offersByCity} />
+          ? <MainEmpty />
+          : <MainOffers />
       }
     </Loading>
   );

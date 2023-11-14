@@ -1,23 +1,20 @@
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { LatLngLiteral, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { TOffer } from '../../types/offer';
 import useMap from '../../hooks/useMap';
 import { createIcon } from '../../utils/map';
 import { MapIconConfig } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { selectActiveOffer } from '../../store/offers/offers-selector';
+import { selectActiveOffer, selectOffersByCity } from '../../store/offers/offers-selector';
 
-type TMapProps = {
-  offers: TOffer[];
-};
 
-function Map({ offers }: TMapProps): JSX.Element {
+function Map(): ReactNode {
+  const offers = useAppSelector(selectOffersByCity);
+  const hoveredOffer = useAppSelector(selectActiveOffer);
+
   const mapRef = useRef(null);
   const map = useMap(mapRef);
-
-  const hoveredOffer = useAppSelector(selectActiveOffer);
 
   useEffect(() => {
     if (map) {

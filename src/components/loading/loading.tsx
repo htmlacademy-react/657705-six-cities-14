@@ -9,9 +9,9 @@ type TLoadingProps = {
 }
 
 function Loading({children}: TLoadingProps): ReactNode {
-  const dataLoading = useAppSelector(selectDataLoading);
+  const isDataLoading = useAppSelector(selectDataLoading);
 
-  if (dataLoading) {
+  if (isDataLoading) {
     return (
       <div style={{
         width: '100%',

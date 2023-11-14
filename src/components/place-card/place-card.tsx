@@ -1,18 +1,27 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
-import { TOffer } from '../../types/offer';
+import { TOfferPreview } from '../../types/offer';
 import { capitalizeFirstCharacter } from '../../utils/utils';
 import { AppRoute } from '../../const';
+import { getRatingWidth } from '../../utils/offer';
 
 type PlaceCardProps = {
-  offer: TOffer;
+  offer: TOfferPreview;
   onMouseOver?: (offerId: string) => void;
   isFavoriteCard: boolean;
 };
 
 function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.Element {
-  const { isPremium, isFavorite, id, price, title, type, previewImage } = offer;
+  const {
+    isPremium,
+    isFavorite,
+    id, price,
+    title,
+    type,
+    previewImage,
+    rating
+  } = offer;
 
   return (
     <article
@@ -76,7 +85,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${isFavoriteCard ? '100%' : '80%'}` }}></span>
+            <span style={{ width: getRatingWidth(rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
