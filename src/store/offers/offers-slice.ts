@@ -4,21 +4,23 @@ import { toast } from 'react-toastify';
 import { CityName, NameSpace } from '../../const';
 import { TCityName } from '../../types/city';
 import { TOffer, TOfferPreview } from '../../types/offer';
-import { fetchOffers, fetchOffer } from './offers-action';
+import { fetchOffers, fetchOffer, fetchNearOffers } from './offers-action';
 
 type TInitialState = {
   city: TCityName;
   data: TOfferPreview[];
-  activeOffer: TOfferPreview['id'] | null;
-  currentOffer: TOffer | null;
+  active: TOfferPreview['id'] | null;
+  current: TOffer | null;
   loading: boolean;
+  near: TOfferPreview[];
 };
 
 const initialState: TInitialState = {
   city: CityName.Paris,
   data: [],
-  activeOffer: null,
-  currentOffer: null,
+  active: null,
+  current: null,
+  near: [],
   loading: false
 };
 
@@ -32,13 +34,18 @@ const offersSlice = createSlice({
     },
     changeActiveOffer: (state, action: PayloadAction<{id: TOffer['id'] | null}>) => {
       const {id} = action.payload;
-      state.activeOffer = id;
+      state.active = id;
     },
     dropOffer: (state) => {
-      state.currentOffer = null;
+      state.current = null;
+      state.near = [];
     },
     dropOffers: (state) => {
       state.data = [];
+      state.active = null;
+    },
+    dropActiveOffer: (state) => {
+      state.active = null;
     }
   },
   //TODO: Сделать матчер
@@ -61,13 +68,21 @@ const offersSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchOffer.fulfilled, (state, action) => {
-        state.currentOffer = action.payload;
+        state.current = action.payload;
         state.loading = false;
       })
       .addCase(fetchOffer.rejected, (state, action) => {
         const {error} = action;
 
         state.loading = false;
+        toast.error(error.message);
+      })
+      .addCase(fetchNearOffers.fulfilled, (state, action) => {
+        state.near = action.payload.slice(0, 3);
+      })
+      .addCase(fetchNearOffers.rejected, (_state, action) => {
+        const {error} = action;
+
         toast.error(error.message);
       });
   }
@@ -78,5 +93,6 @@ export const {
   changeCity,
   changeActiveOffer,
   dropOffer,
-  dropOffers
+  dropOffers,
+  dropActiveOffer
 } = offersSlice.actions;

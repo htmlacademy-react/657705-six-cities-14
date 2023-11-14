@@ -3,10 +3,10 @@ import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { SortType } from '../../const';
 import { TSortType, TSortTypeLabel } from '../../types/sort';
-import { TOffer } from '../../types/offer';
+import { TOfferPreview } from '../../types/offer';
 
 type TSortListProps = {
-  offers: TOffer[];
+  offers: TOfferPreview[];
   onChange: (sortType: TSortType) => void;
 }
 

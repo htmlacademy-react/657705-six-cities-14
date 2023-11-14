@@ -6,11 +6,16 @@ import useMap from '../../hooks/useMap';
 import { createIcon } from '../../utils/map';
 import { MapIconConfig } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { selectActiveOffer, selectOffersByCity } from '../../store/offers/offers-selector';
+import { selectActiveOffer } from '../../store/offers/offers-selector';
+import { TOffer, TOfferPreview } from '../../types/offer';
 
+type TMapProps = {
+  offers: TOfferPreview[] | TOffer[];
+  classBlock: string;
+  offer?: TOffer | null;
+}
 
-function Map(): ReactNode {
-  const offers = useAppSelector(selectOffersByCity);
+function Map({offers, classBlock, offer = null}: TMapProps): ReactNode {
   const hoveredOffer = useAppSelector(selectActiveOffer);
 
   const mapRef = useRef(null);
@@ -28,7 +33,7 @@ function Map(): ReactNode {
       map.setView(mapLatLng, mapZoom);
 
     }
-  }, [map, offers]);
+  }, [map, offers, offer]);
 
   useEffect(() => {
     if (map) {
@@ -48,16 +53,25 @@ function Map(): ReactNode {
         marker.setIcon(currentIcon).addTo(markerLayer);
       });
 
+      if (offer) {
+        const marker = new Marker({
+          lat: offer.location.latitude,
+          lng: offer.location.longitude
+        });
+
+        marker.setIcon(createIcon(MapIconConfig.Active)).addTo(markerLayer);
+      }
+
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, hoveredOffer]);
+  }, [map, offers, hoveredOffer, offer]);
 
   return (
     <section
       ref={mapRef}
-      className="cities__map map"
+      className={`${classBlock}__map map`}
     >
     </section>
   );

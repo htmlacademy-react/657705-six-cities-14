@@ -38,7 +38,7 @@ function Offer(): JSX.Element {
       </Header>
       <main className="page__main page__main--offer">
         <Loading>
-          {offer && <OfferContent currentOffer={offer} />}
+          {offer && <OfferContent offer={offer} />}
         </Loading>
       </main>
     </div>

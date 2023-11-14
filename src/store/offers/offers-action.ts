@@ -24,4 +24,14 @@ const fetchOffer = createAsyncThunk<TOffer, TOffer['id'], {
   }
 );
 
-export {fetchOffers, fetchOffer};
+const fetchNearOffers = createAsyncThunk<TOfferPreview[], TOffer['id'], {
+  extra: AxiosInstance;
+}>(
+  `${NameSpace.Offers}/fetchNearOffers`,
+  async (id, {extra: api}) => {
+    const {data} = await api.get<TOfferPreview[]>(`${APIRoute.Offers}/${id}/nearby`);
+    return data;
+  }
+);
+
+export {fetchOffers, fetchOffer, fetchNearOffers};

@@ -33,7 +33,9 @@ function Main(): ReactNode {
           </section>
         </div>
         <div className="cities">
-          <MainContent setIsOffersEmpty={setIsOffersEmpty} />
+          <MainContent
+            setIsOffersEmpty={setIsOffersEmpty}
+          />
         </div>
       </main>
     </div>

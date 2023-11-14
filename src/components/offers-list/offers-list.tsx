@@ -12,9 +12,9 @@ type TOffersListProps = {
 function OffersList({ offers }: TOffersListProps): ReactNode {
   const dispatch = useAppDispatch();
 
-  function onCardHover(id: TOfferPreview['id']) {
+  const onCardHover = (id: TOfferPreview['id']) => {
     dispatch(changeActiveOffer({id}));
-  }
+  };
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -22,7 +22,7 @@ function OffersList({ offers }: TOffersListProps): ReactNode {
         <PlaceCard
           key={offer.id}
           offer={offer}
-          isFavoriteCard={false}
+          classBlock='cities'
           onMouseOver={(id: TOfferPreview['id']) => onCardHover(id)}
         />
       ))}

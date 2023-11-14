@@ -6,9 +6,11 @@ const selectCity = (state: State) => state[NameSpace.Offers].city;
 
 const selectDataLoading = (state: State) => state[NameSpace.Offers].loading;
 
-const selectActiveOffer = (state: State) => state[NameSpace.Offers].activeOffer;
+const selectActiveOffer = (state: State) => state[NameSpace.Offers].active;
 
-const selectOffer = (state: State) => state[NameSpace.Offers].currentOffer;
+const selectOffer = (state: State) => state[NameSpace.Offers].current;
+
+const selectNearOffers = (state: State) => state[NameSpace.Offers].near;
 
 const selectOffersByCity = createSelector(
   [(state: State) => state[NameSpace.Offers].city, (state: State) => state[NameSpace.Offers].data],
@@ -20,5 +22,6 @@ export {
   selectCity,
   selectDataLoading,
   selectActiveOffer,
-  selectOffer
+  selectOffer,
+  selectNearOffers
 };

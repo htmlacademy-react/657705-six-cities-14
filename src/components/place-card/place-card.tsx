@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 import cn from 'classnames';
 
 import { TOfferPreview } from '../../types/offer';
@@ -6,17 +7,25 @@ import { capitalizeFirstCharacter } from '../../utils/utils';
 import { AppRoute } from '../../const';
 import { getRatingWidth } from '../../utils/offer';
 
-type PlaceCardProps = {
+type TPlaceCardProps = {
   offer: TOfferPreview;
-  onMouseOver?: (offerId: string) => void;
-  isFavoriteCard: boolean;
+  classBlock: string;
+  onMouseOver?: ((offerId: string) => void) | null;
+  isFavoriteCard?: boolean;
 };
 
-function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.Element {
+function PlaceCard(
+  {
+    offer,
+    classBlock,
+    isFavoriteCard = false,
+    onMouseOver = null
+  }: TPlaceCardProps): ReactNode {
   const {
     isPremium,
     isFavorite,
-    id, price,
+    id,
+    price,
     title,
     type,
     previewImage,
@@ -25,12 +34,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
 
   return (
     <article
-      className={
-        cn('place-card', {
-          'cities__card': !isFavoriteCard,
-          'favorites__card': isFavoriteCard
-        })
-      }
+      className={`place-card ${classBlock}__card`}
       onMouseOver={() => onMouseOver && onMouseOver(id)}
     >
       {
@@ -39,14 +43,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           <span>Premium</span>
         </div>
       }
-      <div
-        className={
-          cn('place-card__image-wrapper', {
-            'cities__image-wrapper': !isFavoriteCard,
-            'favorites__image-wrapper': isFavoriteCard
-          })
-        }
-      >
+      <div className={`place-card__image-wrapper ${classBlock}__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
