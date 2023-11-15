@@ -4,6 +4,8 @@ import { TMapIcon } from './types/map-icon';
 
 export const BASE_URL = 'https://14.design.pages.academy';
 export const REQUEST_TIMEOUT = 5000;
+export const MIN_COMMENT_LENGTH = 50;
+export const MAX_COMMENT_LENGTH = 300;
 
 export const cities = [
   'Paris', 'Cologne', 'Brussels', 'Amsterdama', 'Hamburg', 'Dusseldorf'
@@ -12,6 +14,14 @@ export const cities = [
 export const offersTypes = [
   'apartment', 'room', 'house', 'hotel'
 ] as const;
+
+export const StarRating = {
+  '5': 'perfect',
+  '4': 'good',
+  '3': 'not bad',
+  '2': 'badly',
+  '1': 'terribly'
+} as const;
 
 export const SortType = {
   Popular: 'Popular',
@@ -36,7 +46,7 @@ export const AppRoute = {
 export const APIRoute = {
   Offers: '/six-cities/offers',
   Login: '/six-cities/login',
-  Comments: '/six-cities/comments/'
+  Comments: '/six-cities/comments'
 } as const;
 
 export const AuthorizationStatus = {

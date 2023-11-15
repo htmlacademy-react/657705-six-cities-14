@@ -1,7 +1,13 @@
-import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import axios, {AxiosError, AxiosInstance, InternalAxiosRequestConfig} from 'axios';
 
 import { BASE_URL, REQUEST_TIMEOUT } from '../const';
 import { getToken } from './token';
+
+type DetailMessageType = {
+  type: string;
+  message: string;
+}
+
 
 function createApi(): AxiosInstance {
   const api = axios.create({
@@ -18,6 +24,15 @@ function createApi(): AxiosInstance {
 
     return config;
   });
+
+  api.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError<DetailMessageType>) => {
+      // console.log(error);
+
+      throw error;
+    }
+  );
 
   return api;
 }

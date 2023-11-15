@@ -9,6 +9,9 @@ const selectSortedComments = createSelector(
   (comments) => [...comments].sort(sortByDate).slice(0, 10)
 );
 
+const selectLoadingStatus = (state: State) => state[NameSpace.Comments].submittingStatus;
+
 export {
-  selectSortedComments
+  selectSortedComments,
+  selectLoadingStatus
 };

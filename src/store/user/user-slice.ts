@@ -2,14 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { AuthorizationStatus, NameSpace } from '../../const';
 import { TAuthorizationStatus } from '../../types/authorization';
-import { fetchCheckAuth } from './user-action';
+import { fetchCheckAuth, fetchPostLoginAction } from './user-action';
+import { saveToken } from '../../services/token';
+import { toast } from 'react-toastify';
 
 type TInitialState = {
   authorizationStatus: TAuthorizationStatus;
+  email: string | null;
 };
 
 const initialState: TInitialState = {
-  authorizationStatus:  AuthorizationStatus.Unknown
+  authorizationStatus:  AuthorizationStatus.Unknown,
+  email: null
 };
 
 const userSlice = createSlice({
@@ -26,6 +30,16 @@ const userSlice = createSlice({
       })
       .addCase(fetchCheckAuth.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(fetchPostLoginAction.fulfilled, (state, action) => {
+        const {email, token} = action.payload;
+
+        state.email = email;
+        saveToken(token);
+      })
+      .addCase(fetchPostLoginAction.rejected, (state, action) => {
+        console.log(action);
+        toast.error(action.error.message);
       });
   }
 });

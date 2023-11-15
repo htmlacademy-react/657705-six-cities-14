@@ -5,7 +5,7 @@ import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { fetchLoginAction } from '../../store/api-actions';
+import { fetchPostLoginAction } from '../../store/user/user-action';
 
 function Login(): ReactElement {
   const dispath = useAppDispatch();
@@ -23,7 +23,7 @@ function Login(): ReactElement {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (emailRef.current !== null && passwordRef.current !== null) {
-      dispath(fetchLoginAction({
+      dispath(fetchPostLoginAction({
         email: emailRef.current.value,
         password: passwordRef.current.value
       }));
