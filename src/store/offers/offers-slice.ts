@@ -8,7 +8,7 @@ import { fetchOffers, fetchOffer, fetchNearOffers } from './offers-action';
 
 type TInitialState = {
   city: TCityName;
-  data: TOfferPreview[];
+  all: TOfferPreview[];
   active: TOfferPreview['id'] | null;
   current: TOffer | null;
   loading: boolean;
@@ -17,7 +17,7 @@ type TInitialState = {
 
 const initialState: TInitialState = {
   city: CityName.Paris,
-  data: [],
+  all: [],
   active: null,
   current: null,
   near: [],
@@ -41,7 +41,7 @@ const offersSlice = createSlice({
       state.near = [];
     },
     dropOffers: (state) => {
-      state.data = [];
+      state.all = [];
       state.active = null;
     },
     dropActiveOffer: (state) => {
@@ -55,7 +55,7 @@ const offersSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.all = action.payload;
         state.loading = false;
       })
       .addCase(fetchOffers.rejected, (state, action) => {

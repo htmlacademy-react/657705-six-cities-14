@@ -6,5 +6,4 @@ function getPluralEnding(length: number) {
   return length > 1 ? 's' : '';
 }
 
-
 export { capitalizeFirstCharacter, getPluralEnding };

@@ -13,7 +13,7 @@ const selectOffer = (state: State) => state[NameSpace.Offers].current;
 const selectNearOffers = (state: State) => state[NameSpace.Offers].near;
 
 const selectOffersByCity = createSelector(
-  [(state: State) => state[NameSpace.Offers].city, (state: State) => state[NameSpace.Offers].data],
+  [(state: State) => state[NameSpace.Offers].city, (state: State) => state[NameSpace.Offers].all],
   (city, offers) => offers.filter((offer) => offer.city.name === city)
 );
 

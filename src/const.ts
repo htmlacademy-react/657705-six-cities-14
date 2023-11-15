@@ -22,7 +22,8 @@ export const SortType = {
 
 export const NameSpace = {
   Offers: 'OFFERS',
-  User: 'USER'
+  User: 'USER',
+  Comments: 'COMMENTS'
 } as const;
 
 export const AppRoute = {
@@ -35,6 +36,7 @@ export const AppRoute = {
 export const APIRoute = {
   Offers: '/six-cities/offers',
   Login: '/six-cities/login',
+  Comments: '/six-cities/comments/'
 } as const;
 
 export const AuthorizationStatus = {
