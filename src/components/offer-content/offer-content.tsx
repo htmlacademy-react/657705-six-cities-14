@@ -4,19 +4,19 @@ import cn from 'classnames';
 import { TOffer } from '../../types/offer';
 import { getRatingWidth } from '../../utils/offer';
 import { capitalizeFirstCharacter, getPluralEnding } from '../../utils/utils';
-import NearOffers from '../near-offers/near-offers';
+import NearestOffers from '../nearest-offers/nearest-offers';
 import Map from '../map/map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectNearOffers } from '../../store/offers/offers-selector';
-import { fetchNearOffers } from '../../store/offers/offers-action';
 import Review from '../review/review';
+import { selectNearestOffers } from '../../store/offer/offer-selector';
+import { fetchNearestOffers } from '../../store/offer/offer-action';
 
 type TOfferContentProps = {
   offer: TOffer;
 }
 
 function OfferContent({offer}: TOfferContentProps): ReactNode {
-  const nearOffers = useAppSelector(selectNearOffers);
+  const nearestOffers = useAppSelector(selectNearestOffers);
   const dispatch = useAppDispatch();
 
   const {
@@ -36,7 +36,7 @@ function OfferContent({offer}: TOfferContentProps): ReactNode {
   } = offer;
 
   useEffect(() => {
-    dispatch(fetchNearOffers(id));
+    dispatch(fetchNearestOffers(id));
   }, [dispatch, id]);
 
   return (
@@ -135,18 +135,18 @@ function OfferContent({offer}: TOfferContentProps): ReactNode {
           </div>
         </div>
         {
-          nearOffers.length !== 0 &&
+          nearestOffers.length !== 0 &&
           <Map
             classBlock='offer'
-            offers={nearOffers}
+            offers={nearestOffers}
             offer={offer}
           />
         }
       </section>
       {
-        nearOffers.length !== 0 &&
-        <NearOffers
-          nearOffers={nearOffers}
+        nearestOffers.length !== 0 &&
+        <NearestOffers
+          nearestOffers={nearestOffers}
         />
       }
     </>

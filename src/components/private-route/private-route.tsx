@@ -1,16 +1,19 @@
 import { Navigate } from 'react-router-dom';
-
-import { AppRoute, AuthorizationStatus } from '../../const';
 import { ReactNode } from 'react';
 
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { selectAuthStatus } from '../../store/user/user-selector';
+
 type TPrivateRouteProps = {
-  authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
   children: ReactNode;
 };
 
-function PrivateRoute({ authorizationStatus, children }: TPrivateRouteProps): ReactNode {
+function PrivateRoute({ children }: TPrivateRouteProps): ReactNode {
+  const authStatus = useAppSelector(selectAuthStatus);
+
   return (
-    authorizationStatus === AuthorizationStatus.Auth
+    authStatus === AuthorizationStatus.Auth
       ? children
       : <Navigate to={AppRoute.Login} />
   );

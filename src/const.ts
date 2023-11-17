@@ -15,6 +15,12 @@ export const offersTypes = [
   'apartment', 'room', 'house', 'hotel'
 ] as const;
 
+export const LoadingStatus = {
+  Idle: 'idle',
+  Loading: 'loading',
+  Rejected: 'rejected'
+} as const;
+
 export const StarRating = {
   '5': 'perfect',
   '4': 'good',
@@ -32,8 +38,10 @@ export const SortType = {
 
 export const NameSpace = {
   Offers: 'OFFERS',
+  Offer: 'OFFER',
   User: 'USER',
-  Comments: 'COMMENTS'
+  Comments: 'COMMENTS',
+  Favorites: 'FAVORITES'
 } as const;
 
 export const AppRoute = {

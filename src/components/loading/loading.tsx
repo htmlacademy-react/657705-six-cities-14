@@ -1,17 +1,17 @@
 import { ReactNode } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 
-import { useAppSelector } from '../../hooks';
-import { selectDataLoading } from '../../store/offers/offers-selector';
+import { LoadingStatus } from '../../const';
 
 type TLoadingProps = {
   children: ReactNode;
+  loadingStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
 }
 
-function Loading({children}: TLoadingProps): ReactNode {
-  const isDataLoading = useAppSelector(selectDataLoading);
+function Loading({children, loadingStatus}: TLoadingProps): ReactNode {
+  const isLoading = loadingStatus === LoadingStatus.Loading;
 
-  if (isDataLoading) {
+  if (isLoading) {
     return (
       <div style={{
         width: '100%',

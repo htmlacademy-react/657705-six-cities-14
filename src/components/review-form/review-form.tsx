@@ -3,8 +3,8 @@ import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react';
 import { MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH, StarRating } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchPostComment } from '../../store/comments/comments-action';
-import { selectOffer } from '../../store/offers/offers-selector';
 import { selectLoadingStatus } from '../../store/comments/comments-selector';
+import { selectOffer } from '../../store/offer/offer-selector';
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
@@ -53,7 +53,7 @@ function ReviewForm() {
           <Fragment key={title}>
             <input
               onChange={handleRatingChange}
-              checked={value === rating}
+              checked={Number(value) === rating}
               className="form__rating-input visually-hidden"
               name="rating"
               value={value}

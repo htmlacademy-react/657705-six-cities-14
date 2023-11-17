@@ -22,10 +22,10 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchCheckAuth.pending, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuth;
-      })
-      .addCase(fetchCheckAuth.fulfilled, (state) => {
+      .addCase(fetchCheckAuth.fulfilled, (state, action) => {
+        const {email} = action.payload;
+
+        state.email = email;
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(fetchCheckAuth.rejected, (state) => {
@@ -35,10 +35,11 @@ const userSlice = createSlice({
         const {email, token} = action.payload;
 
         state.email = email;
+        state.authorizationStatus = AuthorizationStatus.Auth;
         saveToken(token);
       })
       .addCase(fetchPostLoginAction.rejected, (state, action) => {
-        console.log(action);
+        console.log('fetchPostLoginAction.rejected - ', action);
         toast.error(action.error.message);
       });
   }

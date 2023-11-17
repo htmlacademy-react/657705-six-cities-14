@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AxiosInstance } from 'axios';
-import { TOffer, TOfferPreview } from '../../types/offer';
+import { TOfferPreview } from '../../types/offer';
 import { APIRoute, NameSpace } from '../../const';
 
 const fetchOffers = createAsyncThunk<TOfferPreview[], undefined, {
@@ -14,24 +14,4 @@ const fetchOffers = createAsyncThunk<TOfferPreview[], undefined, {
   }
 );
 
-const fetchOffer = createAsyncThunk<TOffer, TOffer['id'], {
-  extra: AxiosInstance;
-}>(
-  `${NameSpace.Offers}/fetchOffer`,
-  async (id, {extra: api}) => {
-    const {data} = await api.get<TOffer>(`${APIRoute.Offers}/${id}`);
-    return data;
-  }
-);
-
-const fetchNearOffers = createAsyncThunk<TOfferPreview[], TOffer['id'], {
-  extra: AxiosInstance;
-}>(
-  `${NameSpace.Offers}/fetchNearOffers`,
-  async (id, {extra: api}) => {
-    const {data} = await api.get<TOfferPreview[]>(`${APIRoute.Offers}/${id}/nearby`);
-    return data;
-  }
-);
-
-export {fetchOffers, fetchOffer, fetchNearOffers};
+export {fetchOffers};
