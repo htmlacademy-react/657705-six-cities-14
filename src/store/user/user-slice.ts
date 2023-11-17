@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { AuthorizationStatus, NameSpace } from '../../const';
 import { TAuthorizationStatus } from '../../types/authorization';
-import { fetchCheckAuth, fetchPostLoginAction } from './user-action';
-import { saveToken } from '../../services/token';
+import { fetchCheckAuth, fetchLogoutAuth, fetchPostLoginAction } from './user-action';
+import { dropToken, saveToken } from '../../services/token';
 import { toast } from 'react-toastify';
 
 type TInitialState = {
@@ -41,6 +41,11 @@ const userSlice = createSlice({
       .addCase(fetchPostLoginAction.rejected, (state, action) => {
         console.log('fetchPostLoginAction.rejected - ', action);
         toast.error(action.error.message);
+      })
+      .addCase(fetchLogoutAuth.fulfilled, (state) => {
+        state.email = null;
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+        dropToken();
       });
   }
 });

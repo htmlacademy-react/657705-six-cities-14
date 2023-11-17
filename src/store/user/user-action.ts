@@ -42,4 +42,17 @@ const fetchPostLoginAction = createAsyncThunk<TUserData, TAuthData, {
   }
 );
 
-export {fetchCheckAuth, fetchPostLoginAction};
+const fetchLogoutAuth = createAsyncThunk<void, undefined, {
+  extra: AxiosInstance;
+}>(
+  `${NameSpace.User}/fetchLogoutAuth`,
+  async (_arg, {extra: api}) => {
+    await api.delete(APIRoute.Logout);
+  }
+);
+
+export {
+  fetchCheckAuth,
+  fetchPostLoginAction,
+  fetchLogoutAuth
+};

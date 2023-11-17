@@ -54,7 +54,8 @@ export const AppRoute = {
 export const APIRoute = {
   Offers: '/six-cities/offers',
   Login: '/six-cities/login',
-  Comments: '/six-cities/comments'
+  Comments: '/six-cities/comments',
+  Logout: '/six-cities/logout'
 } as const;
 
 export const AuthorizationStatus = {

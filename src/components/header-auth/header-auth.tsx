@@ -1,12 +1,19 @@
-import { ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUserEmail } from '../../store/user/user-selector';
+import { fetchLogoutAuth } from '../../store/user/user-action';
 
 function HeaderAuth(): ReactNode {
+  const dispatch = useAppDispatch();
   const userEmail = useAppSelector(selectUserEmail);
+
+  const handleLogoutClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    dispatch(fetchLogoutAuth());
+  };
 
   return (
     <>
@@ -19,7 +26,11 @@ function HeaderAuth(): ReactNode {
         </Link>
       </li>
       <li className="header__nav-item">
-        <a className="header__nav-link" href="#">
+        <a
+          onClick={handleLogoutClick}
+          className="header__nav-link"
+          href="#"
+        >
           <span className="header__signout">Sign out</span>
         </a>
       </li>

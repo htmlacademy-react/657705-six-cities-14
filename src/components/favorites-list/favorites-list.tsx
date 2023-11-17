@@ -3,7 +3,6 @@ import getSortedByCityOffers from '../../utils/favorites';
 
 import PlaceCard from '../place-card/place-card';
 
-
 function FavoritesList(): JSX.Element {
   const favoritesOffers = useAppSelector((state) => state.offers);
   const sortedByCityOffers = getSortedByCityOffers(favoritesOffers);
