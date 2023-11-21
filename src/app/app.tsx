@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 
 import { AppRoute } from '../const';
 
@@ -8,11 +8,13 @@ import Login from '../pages/login/login';
 import Main from '../pages/main/main';
 import Offer from '../pages/offer/offer';
 import IsAuth from '../components/is-auth/is-auth';
+import HistoryRouter from '../components/history-router';
+import browserHistory from '../browser-history';
 
 function App(): JSX.Element {
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -52,11 +54,14 @@ function App(): JSX.Element {
             }}
             >
               Когда нибудь тут будет красивая 404, впрочем, это уже совсем другая история
+              <br />
+              <br />
+              <Link to={AppRoute.Main} style={{color: '#4481c3'}}>На главную</Link>
             </b>
           }
         />
       </Routes>
-    </BrowserRouter >
+    </HistoryRouter>
   );
 }
 

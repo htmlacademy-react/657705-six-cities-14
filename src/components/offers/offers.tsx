@@ -9,47 +9,51 @@ import { TSortType } from '../../types/sort';
 import { sortedOffersBy } from '../../utils/offer';
 import { getPluralEnding } from '../../utils/utils';
 import { dropActiveOffer } from '../../store/offers/offers-slice';
-
+import { SortType } from '../../const';
 type TOffersProps = {
   offers: TOfferPreview[];
 }
 
 function Offers({offers}: TOffersProps) {
   const [sortedOffers, setSortedOffers] = useState<TOfferPreview[]>([]);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const [currentSortType, setCurrentSortType] = useState<TSortType>(SortType.Popular);
+  const cityChangedRef = useRef<boolean>(false);
+
   const dispatch = useAppDispatch();
 
   const city = useAppSelector(selectCity);
 
   useEffect(() => {
-    setSortedOffers(offers);
-    dispatch(dropActiveOffer());
+    cityChangedRef.current = true;
+    setCurrentSortType(SortType.Popular);
+  }, [city]);
 
-    if (sectionRef.current) {
-      sectionRef.current.scrollTo(0, 0);
+  useEffect(() => {
+    if (cityChangedRef.current) {
+      setSortedOffers(offers);
+      cityChangedRef.current = false;
+    } else {
+      const sorted = currentSortType === SortType.Popular
+        ? offers
+        : sortedOffersBy[currentSortType](offers);
+      setSortedOffers(sorted);
     }
-
-  }, [offers, dispatch]);
+    dispatch(dropActiveOffer());
+  }, [offers, currentSortType, dispatch]);
 
   const handleTypeChange = (activeType: TSortType) => {
-    setSortedOffers((prevState) => {
-      if (activeType !== 'Popular') {
-        return sortedOffersBy[activeType](prevState);
-      }
-
-      return offers;
-    });
+    setCurrentSortType(activeType);
   };
 
   return (
     <section
-      ref={sectionRef}
       className="cities__places places"
     >
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{offers.length} place{getPluralEnding(offers.length)} to stay in {city}</b>
       <SortList
-        offers={offers}
+        city={city}
+        currentSortType={currentSortType}
         onChange={handleTypeChange}
       />
       <OffersList

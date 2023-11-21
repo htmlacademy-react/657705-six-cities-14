@@ -3,16 +3,16 @@ import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { SortType } from '../../const';
 import { TSortType, TSortTypeLabel } from '../../types/sort';
-import { TOfferPreview } from '../../types/offer';
+import { TCityName } from '../../types/city';
 
 type TSortListProps = {
-  offers: TOfferPreview[];
+  city: TCityName;
+  currentSortType: TSortType;
   onChange: (sortType: TSortType) => void;
 }
 
 //TODO: Доделать закрытие при клике вне окна
-function SortList({offers, onChange}: TSortListProps) {
-  const [activeSortType, setActiveSortType] = useState<TSortTypeLabel>(SortType.Popular);
+function SortList({city, currentSortType, onChange}: TSortListProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   const handleTypeClick = () => {
@@ -20,15 +20,13 @@ function SortList({offers, onChange}: TSortListProps) {
   };
 
   const handleTypeItemClick = (sortType: TSortType) => {
-    setActiveSortType(SortType[sortType]);
     onChange(sortType);
     setIsOpened(false);
   };
 
   useEffect(() => {
-    setActiveSortType(SortType.Popular);
     setIsOpened(false);
-  }, [offers]);
+  }, [city]);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -38,7 +36,7 @@ function SortList({offers, onChange}: TSortListProps) {
         className="places__sorting-type"
         tabIndex={0}
       >
-        {activeSortType}
+        {SortType[currentSortType]}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -55,7 +53,7 @@ function SortList({offers, onChange}: TSortListProps) {
                 key={type}
                 onClick={() => handleTypeItemClick(type)}
                 className={cn('places__option', {
-                  'places__option--active': activeSortType === label
+                  'places__option--active': currentSortType === type
                 })}
                 tabIndex={0}
               >

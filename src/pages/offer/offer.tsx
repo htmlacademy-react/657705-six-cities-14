@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
@@ -10,8 +10,9 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectOffer, selectOfferLoadingStatus } from '../../store/offer/offer-selector';
 import { fetchOffer } from '../../store/offer/offer-action';
 import { dropOffer } from '../../store/offer/offer-slice';
+import { fetchFavoritesOffers } from '../../store/offers/offers-action';
 
-function Offer(): ReactNode {
+function Offer() {
   const dispatch = useAppDispatch();
 
   const { offerId } = useParams();
@@ -21,6 +22,7 @@ function Offer(): ReactNode {
   useEffect(() => {
     if (offerId) {
       dispatch(fetchOffer(offerId));
+      dispatch(fetchFavoritesOffers());
     }
 
     return () => {

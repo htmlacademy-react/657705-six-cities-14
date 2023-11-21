@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { useEffect, MouseEvent } from 'react';
 import cn from 'classnames';
 
 import { TOffer } from '../../types/offer';
@@ -10,14 +10,20 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import Review from '../review/review';
 import { selectNearestOffers } from '../../store/offer/offer-selector';
 import { fetchNearestOffers } from '../../store/offer/offer-action';
+import { selectAuthStatus } from '../../store/user/user-selector';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { fetchPostFavoriteStatus } from '../../store/offers/offers-action';
+import { useNavigate } from 'react-router-dom';
 
 type TOfferContentProps = {
   offer: TOffer;
 }
 
-function OfferContent({offer}: TOfferContentProps): ReactNode {
+function OfferContent({offer}: TOfferContentProps) {
   const nearestOffers = useAppSelector(selectNearestOffers);
   const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(selectAuthStatus);
+  const navigate = useNavigate();
 
   const {
     id,
@@ -39,12 +45,21 @@ function OfferContent({offer}: TOfferContentProps): ReactNode {
     dispatch(fetchNearestOffers(id));
   }, [dispatch, id]);
 
+  const handleFavoriteClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchPostFavoriteStatus({id, status: isFavorite}));
+    } else {
+      navigate(AppRoute.Login);
+    }
+  };
+
   return (
     <>
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {images.map((image) => (
+            {images.slice(0, 6).map((image) => (
               <div key={image} className="offer__image-wrapper">
                 <img className="offer__image" src={image} alt="Photo studio" />
               </div>
@@ -64,6 +79,7 @@ function OfferContent({offer}: TOfferContentProps): ReactNode {
                 {title}
               </h1>
               <button
+                onClick={handleFavoriteClick}
                 className={cn('offer__bookmark-button button', {
                   'offer__bookmark-button--active': isFavorite
                 })}
@@ -110,7 +126,11 @@ function OfferContent({offer}: TOfferContentProps): ReactNode {
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <div className="offer__host-user user">
-                <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                <div
+                  className={cn('offer__avatar-wrapper user__avatar-wrapper', {
+                    'offer__avatar-wrapper--pro': host.isPro
+                  })}
+                >
                   <img className="offer__avatar user__avatar" src={host.avatarUrl} width="74" height="74"
                     alt="Host avatar"
                   />

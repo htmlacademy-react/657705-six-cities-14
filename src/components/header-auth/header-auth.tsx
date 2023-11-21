@@ -1,14 +1,17 @@
-import { MouseEvent, ReactNode } from 'react';
+import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUserEmail } from '../../store/user/user-selector';
 import { fetchLogoutAuth } from '../../store/user/user-action';
+import { selectFavoritesOffers } from '../../store/offers/offers-selector';
 
-function HeaderAuth(): ReactNode {
+function HeaderAuth() {
   const dispatch = useAppDispatch();
+
   const userEmail = useAppSelector(selectUserEmail);
+  const favoritesCount = useAppSelector(selectFavoritesOffers);
 
   const handleLogoutClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -22,7 +25,8 @@ function HeaderAuth(): ReactNode {
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">{userEmail}</span>
-          <span className="header__favorite-count">0</span>
+          {/* FIXME: Проверять загрузку */}
+          <span className="header__favorite-count">{favoritesCount.length}</span>
         </Link>
       </li>
       <li className="header__nav-item">

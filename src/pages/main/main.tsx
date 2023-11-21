@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
@@ -8,7 +8,7 @@ import Logo from '../../components/logo/logo';
 import TabsList from '../../components/tabs-list/tabs-list';
 import MainContent from '../../components/main-content/main-content';
 
-function Main(): ReactNode {
+function Main() {
   const [isOffersEmpty, setIsOffersEmpty] = useState<boolean>(true);
 
   return (

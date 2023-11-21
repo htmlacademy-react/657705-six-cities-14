@@ -1,18 +1,16 @@
 import { ReactNode, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { TComment } from '../../types/comment';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchComments } from '../../store/comments/comments-action';
 import ReviewItem from '../review-item/review-item';
+import { selectCommentsCount, selectSortedComments } from '../../store/comments/comments-selector';
 
-type TReviewList = {
-  comments: TComment[];
-}
-
-function ReviewList({comments}: TReviewList): ReactNode {
+function ReviewList(): ReactNode {
   const dispatch = useAppDispatch();
   const { offerId } = useParams();
+  const commentsCount = useAppSelector(selectCommentsCount);
+  const sortedComments = useAppSelector(selectSortedComments);
 
   useEffect(() => {
     if (offerId) {
@@ -21,14 +19,17 @@ function ReviewList({comments}: TReviewList): ReactNode {
   }, [offerId, dispatch]);
 
   return (
-    <ul className="reviews__list">
-      {comments.map((comment) => (
-        <ReviewItem
-          key={comment.id}
-          comment={comment}
-        />
-      ))}
-    </ul>
+    <>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{commentsCount}</span></h2>
+      <ul className="reviews__list">
+        {sortedComments.map((comment) => (
+          <ReviewItem
+            key={comment.id}
+            comment={comment}
+          />
+        ))}
+      </ul>
+    </>
   );
 }
 

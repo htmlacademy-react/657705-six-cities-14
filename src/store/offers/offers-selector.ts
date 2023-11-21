@@ -6,7 +6,11 @@ const selectCity = (state: State) => state[NameSpace.Offers].city;
 
 const selectOffersLoadingStatus = (state: State) => state[NameSpace.Offers].loadingStatus;
 
+const selectFavoritesOffersLoadingStatus = (state: State) => state[NameSpace.Offers].loadingFavoritesStatus;
+
 const selectActiveOffer = (state: State) => state[NameSpace.Offers].active;
+
+const selectFavoritesOffers = (state: State) => state[NameSpace.Offers].favorites;
 
 const selectOffersByCity = createSelector(
   [(state: State) => state[NameSpace.Offers].city, (state: State) => state[NameSpace.Offers].data],
@@ -17,5 +21,7 @@ export {
   selectOffersByCity,
   selectCity,
   selectOffersLoadingStatus,
-  selectActiveOffer
+  selectActiveOffer,
+  selectFavoritesOffers,
+  selectFavoritesOffersLoadingStatus
 };

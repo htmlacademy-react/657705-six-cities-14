@@ -4,14 +4,18 @@ import { NameSpace } from '../../const';
 import { State } from '../../types/state';
 import { sortByDate } from '../../utils/comment';
 
+//FIXME: Перенести в action при загрузки?
 const selectSortedComments = createSelector(
   [(state: State) => state[NameSpace.Comments].all],
   (comments) => [...comments].sort(sortByDate).slice(0, 10)
 );
 
+const selectCommentsCount = (state: State) => state[NameSpace.Comments].all.length;
+
 const selectLoadingStatus = (state: State) => state[NameSpace.Comments].submittingStatus;
 
 export {
   selectSortedComments,
-  selectLoadingStatus
+  selectLoadingStatus,
+  selectCommentsCount
 };

@@ -1,11 +1,15 @@
-import { Link } from 'react-router-dom';
-import { ReactNode } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { MouseEvent, ReactNode } from 'react';
 import cn from 'classnames';
 
 import { TOfferPreview } from '../../types/offer';
 import { capitalizeFirstCharacter } from '../../utils/utils';
-import { AppRoute } from '../../const';
 import { getRatingWidth } from '../../utils/offer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchPostFavoriteStatus } from '../../store/offers/offers-action';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { selectAuthStatus } from '../../store/user/user-selector';
+import { changeActiveOffer, dropActiveOffer } from '../../store/offers/offers-slice';
 
 type TPlaceCardProps = {
   offer: TOfferPreview;
@@ -32,10 +36,24 @@ function PlaceCard(
     rating
   } = offer;
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const authStatus = useAppSelector(selectAuthStatus);
+
+  const handleFavoriteClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchPostFavoriteStatus({id, status: isFavorite}));
+    } else {
+      navigate(AppRoute.Login);
+    }
+  };
+
   return (
     <article
       className={`place-card ${classBlock}__card`}
-      onMouseOver={() => onMouseOver && onMouseOver(id)}
+      onMouseOver={() => onMouseOver && dispatch(changeActiveOffer({id}))}
+      onMouseLeave={() => onMouseOver && dispatch(dropActiveOffer())}
     >
       {
         isPremium &&
@@ -67,6 +85,7 @@ function PlaceCard(
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
+            onClick={handleFavoriteClick}
             className={
               cn('place-card__bookmark-button button', {
                 'place-card__bookmark-button--active': isFavorite

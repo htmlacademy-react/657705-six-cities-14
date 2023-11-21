@@ -3,20 +3,24 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { CityName, LoadingStatus, NameSpace } from '../../const';
 import { TCityName } from '../../types/city';
 import { TOffer, TOfferPreview } from '../../types/offer';
-import { fetchOffers } from './offers-action';
+import { fetchFavoritesOffers, fetchOffers, fetchPostFavoriteStatus } from './offers-action';
 
 type TInitialState = {
   city: TCityName;
   data: TOfferPreview[];
+  favorites: TOfferPreview[];
   active: TOfferPreview['id'] | null;
   loadingStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
+  loadingFavoritesStatus: typeof LoadingStatus[keyof typeof LoadingStatus]; //FIXME: Переписать DRY
 };
 
 const initialState: TInitialState = {
   city: CityName.Paris,
   data: [],
+  favorites: [],
   active: null,
-  loadingStatus: LoadingStatus.Idle
+  loadingStatus: LoadingStatus.Idle,
+  loadingFavoritesStatus: LoadingStatus.Idle,
 };
 
 const offersSlice = createSlice({
@@ -34,6 +38,7 @@ const offersSlice = createSlice({
     dropOffers: (state) => {
       state.data = [];
       state.active = null;
+      state.favorites = [];
     },
     dropActiveOffer: (state) => {
       state.active = null;
@@ -50,6 +55,33 @@ const offersSlice = createSlice({
       })
       .addCase(fetchOffers.rejected, (state) => {
         state.loadingStatus = LoadingStatus.Rejected;
+      })
+      .addCase(fetchFavoritesOffers.pending, (state) => {
+        state.loadingFavoritesStatus = LoadingStatus.Loading;
+      })
+      .addCase(fetchFavoritesOffers.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+        state.loadingFavoritesStatus = LoadingStatus.Idle;
+      })
+      .addCase(fetchPostFavoriteStatus.fulfilled, (state, action) => {
+        const {id, isFavorite} = action.payload;
+
+        state.data = state.data.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              isFavorite
+            };
+          }
+
+          return item;
+        });
+
+        if (isFavorite) {
+          state.favorites.push(action.payload);
+        } else {
+          state.favorites = state.favorites.filter((item) => item.id !== id);
+        }
       });
   }
 });

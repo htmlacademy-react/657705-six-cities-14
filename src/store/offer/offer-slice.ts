@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { LoadingStatus, NameSpace } from '../../const';
 import { TOffer, TOfferPreview } from '../../types/offer';
 import { fetchNearestOffers, fetchOffer } from './offer-action';
+import { fetchPostFavoriteStatus } from '../offers/offers-action';
 
 type TInitialState = {
   data: TOffer | null;
@@ -48,6 +49,13 @@ const offerSlice = createSlice({
       })
       .addCase(fetchNearestOffers.rejected, (state) => {
         state.loadingNearesOffersStatus = LoadingStatus.Rejected;
+      })
+      .addCase(fetchPostFavoriteStatus.fulfilled, (state, action) => {
+        const {isFavorite} = action.payload;
+
+        if (state.data) {
+          state.data.isFavorite = isFavorite;
+        }
       });
   }
 });

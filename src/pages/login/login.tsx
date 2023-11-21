@@ -1,24 +1,23 @@
-import { FormEvent, ReactElement, useRef } from 'react';
-import { Navigate } from 'react-router-dom';
+import { FormEvent, MouseEvent, useRef } from 'react';
 
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppDispatch } from '../../hooks';
 import { fetchPostLoginAction } from '../../store/user/user-action';
+import { getRandomArrElement } from '../../utils/utils';
+import { AppRoute, cities } from '../../const';
+import { TCityName } from '../../types/city';
+import { changeCity } from '../../store/offers/offers-slice';
+import { useNavigate } from 'react-router-dom';
 
-function Login(): ReactElement {
+function Login() {
   const dispath = useAppDispatch();
+  const navigate = useNavigate();
 
-  //FIXME: Переделать на стейт?
+  const randomCity = getRandomArrElement(cities);
+
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Main} />;
-  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +27,12 @@ function Login(): ReactElement {
         password: passwordRef.current.value
       }));
     }
+  };
+
+  const handleCityClick = (e: MouseEvent<HTMLAnchorElement>, city: TCityName) => {
+    e.preventDefault();
+    dispath(changeCity({city}));
+    navigate(AppRoute.Main);
   };
 
   return (
@@ -62,7 +67,8 @@ function Login(): ReactElement {
                   className="login__input form__input"
                   type="password"
                   name="password"
-                  placeholder="Password" required
+                  placeholder="Password"
+                  required
                 />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
@@ -70,8 +76,12 @@ function Login(): ReactElement {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
+              <a
+                onClick={(e) => handleCityClick(e, randomCity)}
+                className="locations__item-link"
+                href="#"
+              >
+                <span>{randomCity}</span>
               </a>
             </div>
           </section>

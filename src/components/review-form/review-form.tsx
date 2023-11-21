@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react';
 
-import { MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH, StarRating } from '../../const';
+import { LoadingStatus, MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH, StarRating } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchPostComment } from '../../store/comments/comments-action';
 import { selectLoadingStatus } from '../../store/comments/comments-selector';
@@ -10,7 +10,7 @@ function ReviewForm() {
   const dispatch = useAppDispatch();
 
   const offer = useAppSelector(selectOffer);
-  const loading = useAppSelector(selectLoadingStatus);
+  const submittingStatus = useAppSelector(selectLoadingStatus);
 
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState('');
@@ -30,6 +30,14 @@ function ReviewForm() {
       dispatch(fetchPostComment({comment, rating, offerId: offer?.id}));
     }
   };
+
+  useEffect(() => {
+    if (submittingStatus === LoadingStatus.Idle) {
+      setRating(0);
+      setComment('');
+      setFormValid(false);
+    }
+  }, [submittingStatus]);
 
   useEffect(() => {
     const commentValid =
@@ -59,7 +67,7 @@ function ReviewForm() {
               value={value}
               id={`${value}-stars`}
               type="radio"
-              disabled={loading === 'loading'}
+              disabled={submittingStatus === 'loading'}
             />
             <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
               <svg className="form__star-image" width="37" height="33">
@@ -76,7 +84,7 @@ function ReviewForm() {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        disabled={loading === 'loading'}
+        disabled={submittingStatus === 'loading'}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -87,7 +95,7 @@ function ReviewForm() {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!formValid || loading === 'loading'}
+          disabled={!formValid || submittingStatus === 'loading'}
         >
           Submit
         </button>

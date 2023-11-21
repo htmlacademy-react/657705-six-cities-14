@@ -12,6 +12,10 @@ type TPrivateRouteProps = {
 function PrivateRoute({ children }: TPrivateRouteProps): ReactNode {
   const authStatus = useAppSelector(selectAuthStatus);
 
+  if (authStatus === AuthorizationStatus.Unknown) {
+    return null;
+  }
+
   return (
     authStatus === AuthorizationStatus.Auth
       ? children

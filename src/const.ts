@@ -8,7 +8,7 @@ export const MIN_COMMENT_LENGTH = 50;
 export const MAX_COMMENT_LENGTH = 300;
 
 export const cities = [
-  'Paris', 'Cologne', 'Brussels', 'Amsterdama', 'Hamburg', 'Dusseldorf'
+  'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
 
 export const offersTypes = [
@@ -48,11 +48,13 @@ export const AppRoute = {
   Main: '/',
   Login: '/login',
   Favorites: '/favorites',
-  Offer: '/offer'
+  Offer: '/offer',
+  NotFound: 'not-found'
 } as const;
 
 export const APIRoute = {
   Offers: '/six-cities/offers',
+  Favorites: '/six-cities/favorite',
   Login: '/six-cities/login',
   Comments: '/six-cities/comments',
   Logout: '/six-cities/logout'

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { TComment } from '../../types/comment';
 import { NameSpace } from '../../const';
 import { fetchComments, fetchPostComment } from './comments-action';
-import { toast } from 'react-toastify';
 
 type TInitialState = {
   all: TComment[];
@@ -27,11 +27,11 @@ const commentsSlice = createSlice({
         state.submittingStatus = 'loading';
       })
       .addCase(fetchPostComment.fulfilled, (state, action) => {
+        state.all.push(action.payload);
         state.submittingStatus = 'idle';
       })
-      .addCase(fetchPostComment.rejected, (state, action) => {
+      .addCase(fetchPostComment.rejected, (state) => {
         state.submittingStatus = 'rejected';
-        toast.error(action.error.message);
       });
   }
 });
