@@ -6,8 +6,6 @@ import { selectOffersByCity } from '../../store/offers/offers-selector';
 function MainOffers() {
   const offers = useAppSelector(selectOffersByCity);
 
-  // TODO: Скролл при смене города!
-
   return (
     <div className="cities__places-container container">
       <Offers

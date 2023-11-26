@@ -11,7 +11,6 @@ type TSortListProps = {
   onChange: (sortType: TSortType) => void;
 }
 
-//TODO: Доделать закрытие при клике вне окна
 function SortList({city, currentSortType, onChange}: TSortListProps) {
   const [isOpened, setIsOpened] = useState(false);
 

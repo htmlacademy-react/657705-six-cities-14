@@ -2,19 +2,12 @@ import { ReactNode } from 'react';
 
 import { TOfferPreview } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
-import { useAppDispatch } from '../../hooks';
-import { changeActiveOffer } from '../../store/offers/offers-slice';
 
 type TOffersListProps = {
   offers: TOfferPreview[];
 };
 
 function OffersList({ offers }: TOffersListProps): ReactNode {
-  const dispatch = useAppDispatch();
-
-  const onCardHover = (id: TOfferPreview['id']) => {
-    dispatch(changeActiveOffer({id}));
-  };
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -23,7 +16,7 @@ function OffersList({ offers }: TOffersListProps): ReactNode {
           key={offer.id}
           offer={offer}
           classBlock='cities'
-          onMouseOver={(id: TOfferPreview['id']) => onCardHover(id)}
+          onMouseOver
         />
       ))}
     </div>

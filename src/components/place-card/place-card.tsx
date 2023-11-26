@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { MouseEvent, ReactNode } from 'react';
+import { MouseEvent, ReactNode, memo } from 'react';
 import cn from 'classnames';
 
 import { TOfferPreview } from '../../types/offer';
@@ -14,7 +14,7 @@ import { changeActiveOffer, dropActiveOffer } from '../../store/offers/offers-sl
 type TPlaceCardProps = {
   offer: TOfferPreview;
   classBlock: string;
-  onMouseOver?: ((offerId: string) => void) | null;
+  onMouseOver?: boolean;
   isFavoriteCard?: boolean;
 };
 
@@ -23,7 +23,7 @@ function PlaceCard(
     offer,
     classBlock,
     isFavoriteCard = false,
-    onMouseOver = null
+    onMouseOver = false
   }: TPlaceCardProps): ReactNode {
   const {
     isPremium,
@@ -116,4 +116,6 @@ function PlaceCard(
   );
 }
 
-export default PlaceCard;
+const PlaceCardMemo = memo(PlaceCard);
+
+export default PlaceCardMemo;

@@ -1,7 +1,6 @@
 import { TOfferPreview } from '../types/offer';
 import { TSortingKeys } from '../types/sort';
 
-//FIXME: Убрать в константы?
 const STARS_COUNT = 5;
 
 function getRatingWidth(rating: number) {

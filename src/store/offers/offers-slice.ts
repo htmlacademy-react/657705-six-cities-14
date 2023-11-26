@@ -11,7 +11,7 @@ type TInitialState = {
   favorites: TOfferPreview[];
   active: TOfferPreview['id'] | null;
   loadingStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
-  loadingFavoritesStatus: typeof LoadingStatus[keyof typeof LoadingStatus]; //FIXME: Переписать DRY
+  loadingFavoritesStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
 };
 
 const initialState: TInitialState = {

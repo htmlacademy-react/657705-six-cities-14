@@ -8,7 +8,7 @@ import { TUserData } from '../../types/user-data';
 type TError = {
   message?: string;
   statusCode?: number;
-  data?: unknown; // FIXME: Плохо?
+  data?: unknown;
 }
 
 const fetchCheckAuth = createAsyncThunk<TUserData, undefined, {

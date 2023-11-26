@@ -25,7 +25,6 @@ function HeaderAuth() {
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">{userEmail}</span>
-          {/* FIXME: Проверять загрузку */}
           <span className="header__favorite-count">{favoritesCount.length}</span>
         </Link>
       </li>

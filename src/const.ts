@@ -1,7 +1,5 @@
 import { TMapIcon } from './types/map-icon';
 
-//FIXME: Разбить на разные файлы?
-
 export const BASE_URL = 'https://14.design.pages.academy';
 export const REQUEST_TIMEOUT = 5000;
 export const MIN_COMMENT_LENGTH = 50;

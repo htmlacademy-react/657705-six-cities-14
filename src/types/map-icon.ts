@@ -1,5 +1,3 @@
-//FIXME: Объединить с map-location?
-
 export type TIconConfig = {
   url: string;
   width: number;
