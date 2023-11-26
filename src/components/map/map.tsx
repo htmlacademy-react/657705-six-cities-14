@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { LatLngLiteral, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -15,7 +15,7 @@ type TMapProps = {
   offer?: TOffer | null;
 }
 
-function Map({offers, classBlock, offer = null}: TMapProps): ReactNode {
+function Map({offers, classBlock, offer = null}: TMapProps) {
   const hoveredOffer = useAppSelector(selectActiveOffer);
 
   const mapRef = useRef(null);

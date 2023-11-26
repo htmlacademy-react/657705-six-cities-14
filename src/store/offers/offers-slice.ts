@@ -4,14 +4,15 @@ import { CityName, LoadingStatus, NameSpace } from '../../const';
 import { TCityName } from '../../types/city';
 import { TOffer, TOfferPreview } from '../../types/offer';
 import { fetchFavoritesOffers, fetchOffers, fetchPostFavoriteStatus } from './offers-action';
+import { TLoadingStatus } from '../../types/state';
 
 type TInitialState = {
   city: TCityName;
   data: TOfferPreview[];
   favorites: TOfferPreview[];
   active: TOfferPreview['id'] | null;
-  loadingStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
-  loadingFavoritesStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
+  loadingStatus: TLoadingStatus;
+  loadingFavoritesStatus: TLoadingStatus;
 };
 
 const initialState: TInitialState = {

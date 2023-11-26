@@ -10,7 +10,6 @@ type DetailMessageType = {
   message: string;
 }
 
-
 function createApi(): AxiosInstance {
   const api = axios.create({
     baseURL: BASE_URL,
@@ -34,7 +33,9 @@ function createApi(): AxiosInstance {
         browserHistory.push(AppRoute.NotFound);
       }
 
-      toast.error(error.message);
+      if (error.response?.status !== 401) {
+        toast.error(error.message);
+      }
 
       throw error;
     }

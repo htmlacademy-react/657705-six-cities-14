@@ -1,4 +1,4 @@
-import { TMapIcon } from './types/map-icon';
+import { TMapIcon } from './types/map';
 
 export const BASE_URL = 'https://14.design.pages.academy';
 export const REQUEST_TIMEOUT = 5000;

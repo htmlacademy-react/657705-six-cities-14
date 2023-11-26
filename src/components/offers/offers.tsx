@@ -10,6 +10,7 @@ import { sortedOffersBy } from '../../utils/offer';
 import { getPluralEnding } from '../../utils/utils';
 import { dropActiveOffer } from '../../store/offers/offers-slice';
 import { SortType } from '../../const';
+
 type TOffersProps = {
   offers: TOfferPreview[];
 }

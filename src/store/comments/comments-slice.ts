@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { TComment } from '../../types/comment';
-import { NameSpace } from '../../const';
+import { LoadingStatus, NameSpace } from '../../const';
 import { fetchComments, fetchPostComment } from './comments-action';
+import { TLoadingStatus } from '../../types/state';
 
 type TInitialState = {
   all: TComment[];
-  submittingStatus : 'idle' | 'loading' | 'rejected';
+  submittingStatus : TLoadingStatus;
 };
 
 const initialState: TInitialState = {
   all: [],
-  submittingStatus: 'idle'
+  submittingStatus: LoadingStatus.Idle
 };
 
 const commentsSlice = createSlice({
@@ -24,14 +25,14 @@ const commentsSlice = createSlice({
         state.all = action.payload;
       })
       .addCase(fetchPostComment.pending, (state) => {
-        state.submittingStatus = 'loading';
+        state.submittingStatus = LoadingStatus.Loading;
       })
       .addCase(fetchPostComment.fulfilled, (state, action) => {
         state.all.push(action.payload);
-        state.submittingStatus = 'idle';
+        state.submittingStatus = LoadingStatus.Idle;
       })
       .addCase(fetchPostComment.rejected, (state) => {
-        state.submittingStatus = 'rejected';
+        state.submittingStatus = LoadingStatus.Rejected;
       });
   }
 });

@@ -4,12 +4,13 @@ import { LoadingStatus, NameSpace } from '../../const';
 import { TOffer, TOfferPreview } from '../../types/offer';
 import { fetchNearestOffers, fetchOffer } from './offer-action';
 import { fetchPostFavoriteStatus } from '../offers/offers-action';
+import { TLoadingStatus } from '../../types/state';
 
 type TInitialState = {
   data: TOffer | null;
   nearestOffers: TOfferPreview[];
-  loadingStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
-  loadingNearesOffersStatus: typeof LoadingStatus[keyof typeof LoadingStatus];
+  loadingStatus: TLoadingStatus;
+  loadingNearesOffersStatus: TLoadingStatus;
 };
 
 const initialState: TInitialState = {
