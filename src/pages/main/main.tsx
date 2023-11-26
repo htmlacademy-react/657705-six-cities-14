@@ -1,20 +1,15 @@
 import cn from 'classnames';
+import { useState } from 'react';
 
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 
-import { useAppSelector } from '../../hooks';
 import TabsList from '../../components/tabs-list/tabs-list';
 import MainContent from '../../components/main-content/main-content';
-import MainEmpty from '../../components/main-empty/main-empty';
-import { selectOffersByCity } from '../../store/selectors';
 
-function Main(): JSX.Element {
-  const city = useAppSelector((state) => state.city);
-  const cityOffers = useAppSelector(selectOffersByCity);
-
-  const offersIsEmpty: boolean = cityOffers.length === 0;
+function Main() {
+  const [isOffersEmpty, setIsOffersEmpty] = useState<boolean>(true);
 
   return (
     <div className="page page--gray page--main">
@@ -27,22 +22,20 @@ function Main(): JSX.Element {
       <main
         className={
           cn('page__main page__main--index', {
-            'page__main--index-empty': offersIsEmpty
+            'page__main--index-empty': isOffersEmpty
           })
         }
       >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <TabsList cityName={city} />
+            <TabsList />
           </section>
         </div>
         <div className="cities">
-          {
-            offersIsEmpty
-              ? <MainEmpty city={city} />
-              : <MainContent city={city} offers={cityOffers} />
-          }
+          <MainContent
+            setIsOffersEmpty={setIsOffersEmpty}
+          />
         </div>
       </main>
     </div>

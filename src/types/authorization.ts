@@ -1,3 +1,8 @@
 import { AuthorizationStatus } from '../const';
 
-export type TAuthorizationStatus = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
+export type TAuthData = {
+  email: string;
+  password: string;
+}
+
+export type TAuthStatus = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];

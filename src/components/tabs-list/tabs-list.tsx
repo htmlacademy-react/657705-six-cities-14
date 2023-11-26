@@ -3,15 +3,14 @@ import { MouseEvent } from 'react';
 
 import { cities } from '../../const';
 import { TCityName } from '../../types/city';
-import { useAppDispatch } from '../../hooks';
-import { changeCity } from '../../store/action';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeCity } from '../../store/offers/offers-slice';
+import { selectCity } from '../../store/offers/offers-selector';
 
-type TTabsList = {
-  cityName: TCityName;
-};
-
-function TabsList({ cityName }: TTabsList): JSX.Element {
+function TabsList(): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const activeCity = useAppSelector(selectCity);
 
   function clickHandler(e: MouseEvent<HTMLAnchorElement>, city: TCityName) {
     e.preventDefault();
@@ -28,7 +27,7 @@ function TabsList({ cityName }: TTabsList): JSX.Element {
           <a
             onClick={(e) => clickHandler(e, city)}
             className={cn('locations__item-link tabs__item', {
-              'tabs__item--active': city === cityName
+              'tabs__item--active': city === activeCity
             })}
             href="#"
           >

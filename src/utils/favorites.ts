@@ -1,13 +1,11 @@
-import { TOffer } from '../types/offer';
+import { TOfferPreview } from '../types/offer';
 
-function getSortedByCityOffers(offers: TOffer[]) {
+function getSortedByCityOffers(offers: TOfferPreview[]) {
   const cityList: {
-    [key: string]: TOffer[];
+    [key: string]: TOfferPreview[];
   } = {};
 
-  const favoritesOffers = offers.filter((item) => item.isFavorite);
-
-  favoritesOffers.forEach((item) => {
+  offers.forEach((item) => {
     if (!cityList[item.city.name]) {
       cityList[item.city.name] = [];
     }

@@ -1,5 +1,3 @@
-//FIXME: Перенести в другое место?
-
 const AUTH_TOKEN_NAME = 'six-cities';
 
 type Token = string;

@@ -1,11 +1,11 @@
 import { TCity } from './city';
 import { THost } from './host';
-import { TMapLocation } from './map-location';
 import { offersTypes } from '../const';
+import { TMapLocation } from './map';
 
 type TOfferType = typeof offersTypes[number];
 
-type TOfferPreview = {
+export type TOfferPreview = {
   id: string;
   title: string;
   type: TOfferType;
@@ -18,7 +18,7 @@ type TOfferPreview = {
   previewImage: string;
 };
 
-type TOffer = TOfferPreview & {
+export type TOffer = TOfferPreview & {
   bedrooms: number;
   description: string;
   goods: string[];
@@ -26,5 +26,3 @@ type TOffer = TOfferPreview & {
   images: string[];
   maxAdults: number;
 }
-
-export type { TOffer, TOfferPreview };

@@ -1,10 +1,10 @@
-import { TCityName } from '../../types/city';
+import { ReactNode } from 'react';
+import { useAppSelector } from '../../hooks';
+import { selectCity } from '../../store/offers/offers-selector';
 
-type TMainEmpty = {
-  city: TCityName;
-}
+function MainEmpty(): ReactNode {
+  const city = useAppSelector(selectCity);
 
-function MainEmpty({city}: TMainEmpty) {
   return (
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">

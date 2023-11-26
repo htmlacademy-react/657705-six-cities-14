@@ -1,28 +1,59 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { MouseEvent, ReactNode, memo } from 'react';
 import cn from 'classnames';
 
-import { TOffer } from '../../types/offer';
+import { TOfferPreview } from '../../types/offer';
 import { capitalizeFirstCharacter } from '../../utils/utils';
-import { AppRoute } from '../../const';
+import { getRatingWidth } from '../../utils/offer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchPostFavoriteStatus } from '../../store/offers/offers-action';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { selectAuthStatus } from '../../store/user/user-selector';
+import { changeActiveOffer, dropActiveOffer } from '../../store/offers/offers-slice';
 
-type PlaceCardProps = {
-  offer: TOffer;
-  onMouseOver?: (offerId: string) => void;
-  isFavoriteCard: boolean;
+type TPlaceCardProps = {
+  offer: TOfferPreview;
+  classBlock: string;
+  onMouseOver?: boolean;
+  isFavoriteCard?: boolean;
 };
 
-function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.Element {
-  const { isPremium, isFavorite, id, price, title, type, previewImage } = offer;
+function PlaceCard(
+  {
+    offer,
+    classBlock,
+    isFavoriteCard = false,
+    onMouseOver = false
+  }: TPlaceCardProps): ReactNode {
+  const {
+    isPremium,
+    isFavorite,
+    id,
+    price,
+    title,
+    type,
+    previewImage,
+    rating
+  } = offer;
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const authStatus = useAppSelector(selectAuthStatus);
+
+  const handleFavoriteClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchPostFavoriteStatus({id, status: isFavorite}));
+    } else {
+      navigate(AppRoute.Login);
+    }
+  };
 
   return (
     <article
-      className={
-        cn('place-card', {
-          'cities__card': !isFavoriteCard,
-          'favorites__card': isFavoriteCard
-        })
-      }
-      onMouseOver={() => onMouseOver && onMouseOver(offer.id)}
+      className={`place-card ${classBlock}__card`}
+      onMouseOver={() => onMouseOver && dispatch(changeActiveOffer({id}))}
+      onMouseLeave={() => onMouseOver && dispatch(dropActiveOffer())}
     >
       {
         isPremium &&
@@ -30,14 +61,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
           <span>Premium</span>
         </div>
       }
-      <div
-        className={
-          cn('place-card__image-wrapper', {
-            'cities__image-wrapper': !isFavoriteCard,
-            'favorites__image-wrapper': isFavoriteCard
-          })
-        }
-      >
+      <div className={`place-card__image-wrapper ${classBlock}__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
@@ -61,6 +85,7 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
+            onClick={handleFavoriteClick}
             className={
               cn('place-card__bookmark-button button', {
                 'place-card__bookmark-button--active': isFavorite
@@ -76,12 +101,14 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${isFavoriteCard ? '100%' : '80%'}` }}></span>
+            <span style={{ width: getRatingWidth(rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Offer}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstCharacter(type)}</p>
       </div>
@@ -89,4 +116,6 @@ function PlaceCard({ offer, isFavoriteCard, onMouseOver }: PlaceCardProps): JSX.
   );
 }
 
-export default PlaceCard;
+const PlaceCardMemo = memo(PlaceCard);
+
+export default PlaceCardMemo;

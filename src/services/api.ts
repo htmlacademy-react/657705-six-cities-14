@@ -1,7 +1,14 @@
-import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import axios, {AxiosError, AxiosInstance, InternalAxiosRequestConfig} from 'axios';
 
-import { BASE_URL, REQUEST_TIMEOUT } from '../const';
+import { AppRoute, BASE_URL, REQUEST_TIMEOUT } from '../const';
 import { getToken } from './token';
+import browserHistory from '../browser-history';
+import { toast } from 'react-toastify';
+
+type DetailMessageType = {
+  type: string;
+  message: string;
+}
 
 function createApi(): AxiosInstance {
   const api = axios.create({
@@ -18,6 +25,21 @@ function createApi(): AxiosInstance {
 
     return config;
   });
+
+  api.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError<DetailMessageType>) => {
+      if (error.response?.status === 404) {
+        browserHistory.push(AppRoute.NotFound);
+      }
+
+      if (error.response?.status !== 401) {
+        toast.error(error.message);
+      }
+
+      throw error;
+    }
+  );
 
   return api;
 }

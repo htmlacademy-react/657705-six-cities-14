@@ -1,20 +1,22 @@
-import { TOffer } from '../../types/offer';
+import { ReactNode } from 'react';
+
+import { TOfferPreview } from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
-type OffersListProps = {
-  offers: TOffer[];
-  onCardHover: (id: string) => void;
+type TOffersListProps = {
+  offers: TOfferPreview[];
 };
 
-function OffersList({ offers, onCardHover }: OffersListProps): JSX.Element {
+function OffersList({ offers }: TOffersListProps): ReactNode {
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}
           offer={offer}
-          isFavoriteCard={false}
-          onMouseOver={(id: string) => onCardHover(id)}
+          classBlock='cities'
+          onMouseOver
         />
       ))}
     </div>

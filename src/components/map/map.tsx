@@ -2,17 +2,22 @@ import { useEffect, useRef } from 'react';
 import { LatLngLiteral, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { TOffer } from '../../types/offer';
 import useMap from '../../hooks/useMap';
 import { createIcon } from '../../utils/map';
 import { MapIconConfig } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { selectActiveOffer } from '../../store/offers/offers-selector';
+import { TOffer, TOfferPreview } from '../../types/offer';
 
 type TMapProps = {
-  offers: TOffer[];
-  hoveredOffer: TOffer | undefined;
-};
+  offers: TOfferPreview[] | TOffer[];
+  classBlock: string;
+  offer?: TOffer | null;
+}
 
-function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
+function Map({offers, classBlock, offer = null}: TMapProps) {
+  const hoveredOffer = useAppSelector(selectActiveOffer);
+
   const mapRef = useRef(null);
   const map = useMap(mapRef);
 
@@ -28,7 +33,7 @@ function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
       map.setView(mapLatLng, mapZoom);
 
     }
-  }, [map, offers]);
+  }, [map, offers, offer]);
 
   useEffect(() => {
     if (map) {
@@ -41,23 +46,32 @@ function Map({ offers, hoveredOffer }: TMapProps): JSX.Element {
         });
 
         const currentIcon =
-          (id === hoveredOffer?.id)
+          (id === hoveredOffer)
             ? createIcon(MapIconConfig.Active)
             : createIcon(MapIconConfig.Default);
 
         marker.setIcon(currentIcon).addTo(markerLayer);
       });
 
+      if (offer) {
+        const marker = new Marker({
+          lat: offer.location.latitude,
+          lng: offer.location.longitude
+        });
+
+        marker.setIcon(createIcon(MapIconConfig.Active)).addTo(markerLayer);
+      }
+
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, hoveredOffer]);
+  }, [map, offers, hoveredOffer, offer]);
 
   return (
     <section
       ref={mapRef}
-      className="cities__map map"
+      className={`${classBlock}__map map`}
     >
     </section>
   );

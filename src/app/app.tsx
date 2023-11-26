@@ -1,25 +1,20 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute } from '../const';
 
-import { useAppSelector } from '../hooks';
 import PrivateRoute from '../components/private-route/private-route';
 import Favorites from '../pages/favorites/favorites';
 import Login from '../pages/login/login';
 import Main from '../pages/main/main';
 import Offer from '../pages/offer/offer';
-import LoadingScreen from '../pages/loading-screen/loading-screen';
+import IsAuth from '../components/is-auth/is-auth';
+import HistoryRouter from '../components/history-router';
+import browserHistory from '../browser-history';
 
 function App(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-
-  //FIXME: Перенести в компоненты?
-  if (isOffersDataLoading) {
-    return <LoadingScreen />;
-  }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -31,12 +26,17 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Login}
-          element={<Login />}
+          element={
+            <IsAuth
+              authComponent={<Navigate to={AppRoute.Main} />}
+              noAuthComponent={<Login />}
+            />
+          }
         />
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute>
               <Favorites />
             </PrivateRoute>
           }
@@ -54,11 +54,14 @@ function App(): JSX.Element {
             }}
             >
               Когда нибудь тут будет красивая 404, впрочем, это уже совсем другая история
+              <br />
+              <br />
+              <Link to={AppRoute.Main} style={{color: '#4481c3'}}>На главную</Link>
             </b>
           }
         />
       </Routes>
-    </BrowserRouter >
+    </HistoryRouter>
   );
 }
 
