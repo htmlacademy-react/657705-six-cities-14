@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import { useAppDispatch } from '../../hooks';
 import { fetchPostLoginAction } from '../../store/user/user-action';
 import { getRandomArrElement } from '../../utils/utils';
 import { AppRoute, cities } from '../../const';
 import { TCityName } from '../../types/city';
 import { changeCity } from '../../store/offers/offers-slice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 function Login() {
   const dispath = useAppDispatch();

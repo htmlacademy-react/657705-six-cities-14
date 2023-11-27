@@ -6,10 +6,11 @@ import {
   MIN_COMMENT_LENGTH,
   StarRating,
 } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchPostComment } from '../../store/comments/comments-action';
 import { selectLoadingStatus } from '../../store/comments/comments-selector';
 import { selectOffer } from '../../store/offer/offer-selector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 function ReviewForm() {
   const dispatch = useAppDispatch();

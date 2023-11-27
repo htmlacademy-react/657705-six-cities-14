@@ -5,7 +5,6 @@ import FavoritesList from '../../components/favorites-list/favorites-list';
 import HeaderNav from '../../components/header-nav/header-nav';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoritesOffers } from '../../store/offers/offers-action';
 import Loading from '../../components/loading/loading';
 import {
@@ -13,6 +12,8 @@ import {
   selectFavoritesOffersLoadingStatus,
 } from '../../store/offers/offers-selector';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 function Favorites(): JSX.Element {
   const dispatch = useAppDispatch();

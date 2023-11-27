@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   fetchFavoritesOffers,
   fetchOffers,
@@ -14,6 +13,8 @@ import MainEmpty from '../main-empty/main-empty';
 import MainOffers from '../main-offers/main-offers';
 import { dropOffers } from '../../store/offers/offers-slice';
 import { selectAuthStatus } from '../../store/user/user-selector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TMainContentProps = {
   setIsOffersEmpty: (state: boolean) => void;

@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchComments } from '../../store/comments/comments-action';
 import ReviewItem from '../review-item/review-item';
 import {
   selectCommentsCount,
   selectSortedComments,
 } from '../../store/comments/comments-selector';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 function ReviewList() {
   const dispatch = useAppDispatch();

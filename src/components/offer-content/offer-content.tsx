@@ -6,7 +6,6 @@ import { getRatingWidth } from '../../utils/offer';
 import { capitalizeFirstCharacter, getPluralEnding } from '../../utils/utils';
 import NearestOffers from '../nearest-offers/nearest-offers';
 import Map from '../map/map';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import Review from '../review/review';
 import { selectNearestOffers } from '../../store/offer/offer-selector';
 import { fetchNearestOffers } from '../../store/offer/offer-action';
@@ -14,6 +13,8 @@ import { selectAuthStatus } from '../../store/user/user-selector';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { fetchPostFavoriteStatus } from '../../store/offers/offers-action';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 type TOfferContentProps = {
   offer: TOffer;

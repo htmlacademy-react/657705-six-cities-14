@@ -5,9 +5,9 @@ import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
 import { createIcon } from '../../utils/map';
 import { MapIconConfig } from '../../const';
-import { useAppSelector } from '../../hooks';
 import { selectActiveOffer } from '../../store/offers/offers-selector';
 import { TOffer, TOfferPreview } from '../../types/offer';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TMapProps = {
   offers: TOfferPreview[] | TOffer[];

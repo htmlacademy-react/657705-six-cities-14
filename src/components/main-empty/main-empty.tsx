@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { selectCity } from '../../store/offers/offers-selector';
 
 function MainEmpty() {

@@ -2,8 +2,8 @@ import { Navigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppSelector } from '../../hooks';
 import { selectAuthStatus } from '../../store/user/user-selector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TPrivateRouteProps = {
   children: ReactNode;

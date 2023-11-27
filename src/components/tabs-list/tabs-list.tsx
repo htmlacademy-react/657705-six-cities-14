@@ -3,9 +3,10 @@ import { MouseEvent } from 'react';
 
 import { cities } from '../../const';
 import { TCityName } from '../../types/city';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeCity } from '../../store/offers/offers-slice';
 import { selectCity } from '../../store/offers/offers-selector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 function TabsList() {
   const dispatch = useAppDispatch();

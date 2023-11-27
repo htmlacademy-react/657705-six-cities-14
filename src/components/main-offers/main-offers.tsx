@@ -1,7 +1,7 @@
 import Map from '../map/map';
 import Offers from '../offers/offers';
-import { useAppSelector } from '../../hooks';
 import { selectOffersByCity } from '../../store/offers/offers-selector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 function MainOffers() {
   const offers = useAppSelector(selectOffersByCity);

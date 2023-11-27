@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectCity } from '../../store/offers/offers-selector';
 import OffersList from '../offers-list/offers-list';
 import SortList from '../sort-list/sort-list';
@@ -10,6 +9,8 @@ import { sortedOffersBy } from '../../utils/offer';
 import { getPluralEnding } from '../../utils/utils';
 import { dropActiveOffer } from '../../store/offers/offers-slice';
 import { SortType } from '../../const';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TOffersProps = {
   offers: TOfferPreview[];

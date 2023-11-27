@@ -5,7 +5,6 @@ import cn from 'classnames';
 import { TOfferPreview } from '../../types/offer';
 import { capitalizeFirstCharacter } from '../../utils/utils';
 import { getRatingWidth } from '../../utils/offer';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchPostFavoriteStatus } from '../../store/offers/offers-action';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { selectAuthStatus } from '../../store/user/user-selector';
@@ -13,6 +12,8 @@ import {
   changeActiveOffer,
   dropActiveOffer,
 } from '../../store/offers/offers-slice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TPlaceCardProps = {
   offer: TOfferPreview;

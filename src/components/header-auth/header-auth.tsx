@@ -2,10 +2,11 @@ import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUserEmail } from '../../store/user/user-selector';
 import { fetchLogoutAuth } from '../../store/user/user-action';
 import { selectFavoritesOffers } from '../../store/offers/offers-selector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 function HeaderAuth() {
   const dispatch = useAppDispatch();
