@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   [NameSpace.Offers]: offersSlice.reducer,
   [NameSpace.Offer]: offerSlice.reducer,
   [NameSpace.User]: userSlice.reducer,
-  [NameSpace.Comments]: commentsSlice.reducer
+  [NameSpace.Comments]: commentsSlice.reducer,
 });
 
-export {rootReducer};
+export { rootReducer };

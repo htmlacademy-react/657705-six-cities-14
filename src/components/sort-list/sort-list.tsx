@@ -9,9 +9,9 @@ type TSortListProps = {
   city: TCityName;
   currentSortType: TSortType;
   onChange: (sortType: TSortType) => void;
-}
+};
 
-function SortList({city, currentSortType, onChange}: TSortListProps) {
+function SortList({ city, currentSortType, onChange }: TSortListProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   const handleTypeClick = () => {
@@ -42,24 +42,23 @@ function SortList({city, currentSortType, onChange}: TSortListProps) {
       </span>
       <ul
         className={cn('places__options places__options--custom', {
-          'places__options--opened': isOpened
+          'places__options--opened': isOpened,
         })}
       >
-        {
-          (Object.entries(SortType) as [TSortType, TSortTypeLabel][])
-            .map(([type, label]) => (
-              <li
-                key={type}
-                onClick={() => handleTypeItemClick(type)}
-                className={cn('places__option', {
-                  'places__option--active': currentSortType === type
-                })}
-                tabIndex={0}
-              >
-                {label}
-              </li>
-            ))
-        }
+        {(Object.entries(SortType) as [TSortType, TSortTypeLabel][]).map(
+          ([type, label]) => (
+            <li
+              key={type}
+              onClick={() => handleTypeItemClick(type)}
+              className={cn('places__option', {
+                'places__option--active': currentSortType === type,
+              })}
+              tabIndex={0}
+            >
+              {label}
+            </li>
+          )
+        )}
       </ul>
     </form>
   );

@@ -1,4 +1,8 @@
-import axios, {AxiosError, AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 import { AppRoute, BASE_URL, REQUEST_TIMEOUT } from '../const';
 import { getToken } from './token';
@@ -8,12 +12,12 @@ import { toast } from 'react-toastify';
 type DetailMessageType = {
   type: string;
   message: string;
-}
+};
 
 function createApi(): AxiosInstance {
   const api = axios.create({
     baseURL: BASE_URL,
-    timeout: REQUEST_TIMEOUT
+    timeout: REQUEST_TIMEOUT,
   });
 
   api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -44,4 +48,4 @@ function createApi(): AxiosInstance {
   return api;
 }
 
-export {createApi};
+export { createApi };

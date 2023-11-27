@@ -1,19 +1,26 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFavoritesOffers, fetchOffers } from '../../store/offers/offers-action';
-import { selectOffersByCity, selectOffersLoadingStatus } from '../../store/offers/offers-selector';
+import {
+  fetchFavoritesOffers,
+  fetchOffers,
+} from '../../store/offers/offers-action';
+import {
+  selectOffersByCity,
+  selectOffersLoadingStatus,
+} from '../../store/offers/offers-selector';
 import Loading from '../loading/loading';
 import MainEmpty from '../main-empty/main-empty';
 import MainOffers from '../main-offers/main-offers';
 import { dropOffers } from '../../store/offers/offers-slice';
 import { selectAuthStatus } from '../../store/user/user-selector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TMainContentProps = {
   setIsOffersEmpty: (state: boolean) => void;
-}
+};
 
-function MainContent({setIsOffersEmpty}: TMainContentProps) {
+function MainContent({ setIsOffersEmpty }: TMainContentProps) {
   const dispatch = useAppDispatch();
 
   const offersByCity = useAppSelector(selectOffersByCity);
@@ -34,11 +41,7 @@ function MainContent({setIsOffersEmpty}: TMainContentProps) {
 
   return (
     <Loading loadingStatus={offersLoadingStatus}>
-      {
-        offersByCity.length === 0
-          ? <MainEmpty />
-          : <MainOffers />
-      }
+      {offersByCity.length === 0 ? <MainEmpty /> : <MainOffers />}
     </Loading>
   );
 }

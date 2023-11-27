@@ -3,31 +3,29 @@ import { MouseEvent } from 'react';
 
 import { cities } from '../../const';
 import { TCityName } from '../../types/city';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeCity } from '../../store/offers/offers-slice';
 import { selectCity } from '../../store/offers/offers-selector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
-function TabsList(): JSX.Element {
+function TabsList() {
   const dispatch = useAppDispatch();
 
   const activeCity = useAppSelector(selectCity);
 
-  function clickHandler(e: MouseEvent<HTMLAnchorElement>, city: TCityName) {
+  function handleLinkClick(e: MouseEvent<HTMLAnchorElement>, city: TCityName) {
     e.preventDefault();
-    dispatch(changeCity({city}));
+    dispatch(changeCity({ city }));
   }
 
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city) => (
-        <li
-          key={city}
-          className="locations__item"
-        >
+        <li key={city} className="locations__item">
           <a
-            onClick={(e) => clickHandler(e, city)}
+            onClick={(e) => handleLinkClick(e, city)}
             className={cn('locations__item-link tabs__item', {
-              'tabs__item--active': city === activeCity
+              'tabs__item--active': city === activeCity,
             })}
             href="#"
           >

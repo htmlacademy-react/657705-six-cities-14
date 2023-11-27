@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectCity } from '../../store/offers/offers-selector';
 import OffersList from '../offers-list/offers-list';
 import SortList from '../sort-list/sort-list';
@@ -10,14 +9,18 @@ import { sortedOffersBy } from '../../utils/offer';
 import { getPluralEnding } from '../../utils/utils';
 import { dropActiveOffer } from '../../store/offers/offers-slice';
 import { SortType } from '../../const';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TOffersProps = {
   offers: TOfferPreview[];
-}
+};
 
-function Offers({offers}: TOffersProps) {
+function Offers({ offers }: TOffersProps) {
   const [sortedOffers, setSortedOffers] = useState<TOfferPreview[]>([]);
-  const [currentSortType, setCurrentSortType] = useState<TSortType>(SortType.Popular);
+  const [currentSortType, setCurrentSortType] = useState<TSortType>(
+    SortType.Popular
+  );
   const cityChangedRef = useRef<boolean>(false);
 
   const dispatch = useAppDispatch();
@@ -34,9 +37,10 @@ function Offers({offers}: TOffersProps) {
       setSortedOffers(offers);
       cityChangedRef.current = false;
     } else {
-      const sorted = currentSortType === SortType.Popular
-        ? offers
-        : sortedOffersBy[currentSortType](offers);
+      const sorted =
+        currentSortType === SortType.Popular
+          ? offers
+          : sortedOffersBy[currentSortType](offers);
       setSortedOffers(sorted);
     }
     dispatch(dropActiveOffer());
@@ -47,19 +51,17 @@ function Offers({offers}: TOffersProps) {
   };
 
   return (
-    <section
-      className="cities__places places"
-    >
+    <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{offers.length} place{getPluralEnding(offers.length)} to stay in {city}</b>
+      <b className="places__found">
+        {offers.length} place{getPluralEnding(offers.length)} to stay in {city}
+      </b>
       <SortList
         city={city}
         currentSortType={currentSortType}
         onChange={handleTypeChange}
       />
-      <OffersList
-        offers={sortedOffers}
-      />
+      <OffersList offers={sortedOffers} />
     </section>
   );
 }

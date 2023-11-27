@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { store } from './store';
+import { store } from './store/store';
 import App from './app/app';
 import { fetchCheckAuth } from './store/user/user-action';
 

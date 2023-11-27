@@ -8,7 +8,7 @@ import Login from '../pages/login/login';
 import Main from '../pages/main/main';
 import Offer from '../pages/offer/offer';
 import IsAuth from '../components/is-auth/is-auth';
-import HistoryRouter from '../components/history-router';
+import HistoryRouter from '../components/history-router/history-router';
 import browserHistory from '../browser-history';
 
 function App(): JSX.Element {

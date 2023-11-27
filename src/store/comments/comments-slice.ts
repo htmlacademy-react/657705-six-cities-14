@@ -7,12 +7,12 @@ import { TLoadingStatus } from '../../types/state';
 
 type TInitialState = {
   all: TComment[];
-  submittingStatus : TLoadingStatus;
+  submittingStatus: TLoadingStatus;
 };
 
 const initialState: TInitialState = {
   all: [],
-  submittingStatus: LoadingStatus.Idle
+  submittingStatus: LoadingStatus.Idle,
 };
 
 const commentsSlice = createSlice({
@@ -34,7 +34,7 @@ const commentsSlice = createSlice({
       .addCase(fetchPostComment.rejected, (state) => {
         state.submittingStatus = LoadingStatus.Rejected;
       });
-  }
+  },
 });
 
-export {commentsSlice};
+export { commentsSlice };

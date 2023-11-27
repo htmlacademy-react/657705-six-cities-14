@@ -5,16 +5,22 @@ import { NameSpace } from '../../const';
 
 const selectCity = (state: State) => state[NameSpace.Offers].city;
 
-const selectOffersLoadingStatus = (state: State) => state[NameSpace.Offers].loadingStatus;
+const selectOffersLoadingStatus = (state: State) =>
+  state[NameSpace.Offers].loadingStatus;
 
-const selectFavoritesOffersLoadingStatus = (state: State) => state[NameSpace.Offers].loadingFavoritesStatus;
+const selectFavoritesOffersLoadingStatus = (state: State) =>
+  state[NameSpace.Offers].loadingFavoritesStatus;
 
 const selectActiveOffer = (state: State) => state[NameSpace.Offers].active;
 
-const selectFavoritesOffers = (state: State) => state[NameSpace.Offers].favorites;
+const selectFavoritesOffers = (state: State) =>
+  state[NameSpace.Offers].favorites;
 
 const selectOffersByCity = createSelector(
-  [(state: State) => state[NameSpace.Offers].city, (state: State) => state[NameSpace.Offers].data],
+  [
+    (state: State) => state[NameSpace.Offers].city,
+    (state: State) => state[NameSpace.Offers].data,
+  ],
   (city, offers) => offers.filter((offer) => offer.city.name === city)
 );
 
@@ -24,5 +30,5 @@ export {
   selectOffersLoadingStatus,
   selectActiveOffer,
   selectFavoritesOffers,
-  selectFavoritesOffersLoadingStatus
+  selectFavoritesOffersLoadingStatus,
 };

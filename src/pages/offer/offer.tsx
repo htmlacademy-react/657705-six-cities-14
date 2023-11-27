@@ -6,11 +6,15 @@ import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import OfferContent from '../../components/offer-content/offer-content';
 import Loading from '../../components/loading/loading';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectOffer, selectOfferLoadingStatus } from '../../store/offer/offer-selector';
+import {
+  selectOffer,
+  selectOfferLoadingStatus,
+} from '../../store/offer/offer-selector';
 import { fetchOffer } from '../../store/offer/offer-action';
 import { dropOffer } from '../../store/offer/offer-slice';
 import { fetchFavoritesOffers } from '../../store/offers/offers-action';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 function Offer() {
   const dispatch = useAppDispatch();

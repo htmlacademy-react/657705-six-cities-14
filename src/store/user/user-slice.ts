@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { AuthorizationStatus, NameSpace } from '../../const';
-import { fetchCheckAuth, fetchLogoutAuth, fetchPostLoginAction } from './user-action';
+import {
+  fetchCheckAuth,
+  fetchLogoutAuth,
+  fetchPostLoginAction,
+} from './user-action';
 import { dropToken, saveToken } from '../../services/token';
 import { TAuthStatus } from '../../types/authorization';
 
@@ -12,7 +16,7 @@ type TInitialState = {
 
 const initialState: TInitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  email: null
+  email: null,
 };
 
 const userSlice = createSlice({
@@ -22,7 +26,7 @@ const userSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCheckAuth.fulfilled, (state, action) => {
-        const {email} = action.payload;
+        const { email } = action.payload;
 
         state.email = email;
         state.authorizationStatus = AuthorizationStatus.Auth;
@@ -31,7 +35,7 @@ const userSlice = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(fetchPostLoginAction.fulfilled, (state, action) => {
-        const {email, token} = action.payload;
+        const { email, token } = action.payload;
 
         state.email = email;
         state.authorizationStatus = AuthorizationStatus.Auth;
@@ -42,7 +46,7 @@ const userSlice = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         dropToken();
       });
-  }
+  },
 });
 
-export {userSlice};
+export { userSlice };

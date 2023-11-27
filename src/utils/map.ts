@@ -10,4 +10,4 @@ function createIcon(config: TIconConfig) {
   });
 }
 
-export {createIcon};
+export { createIcon };

@@ -16,7 +16,7 @@ function getSortedByCityOffers(offers: TOfferPreview[]) {
   return Object.keys(cityList).map((cityName) => ({
     id: (Date.now() + Math.random()).toString(36),
     name: cityName,
-    offersList: cityList[cityName]
+    offersList: cityList[cityName],
   }));
 }
 

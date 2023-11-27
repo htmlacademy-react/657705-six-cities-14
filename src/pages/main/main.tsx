@@ -20,11 +20,9 @@ function Main() {
         </>
       </Header>
       <main
-        className={
-          cn('page__main page__main--index', {
-            'page__main--index-empty': isOffersEmpty
-          })
-        }
+        className={cn('page__main page__main--index', {
+          'page__main--index-empty': isOffersEmpty,
+        })}
       >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -33,9 +31,7 @@ function Main() {
           </section>
         </div>
         <div className="cities">
-          <MainContent
-            setIsOffersEmpty={setIsOffersEmpty}
-          />
+          <MainContent setIsOffersEmpty={setIsOffersEmpty} />
         </div>
       </main>
     </div>
