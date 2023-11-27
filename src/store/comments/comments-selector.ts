@@ -9,12 +9,10 @@ const selectSortedComments = createSelector(
   (comments) => [...comments].sort(sortByDate).slice(0, 10)
 );
 
-const selectCommentsCount = (state: State) => state[NameSpace.Comments].all.length;
+const selectCommentsCount = (state: State) =>
+  state[NameSpace.Comments].all.length;
 
-const selectLoadingStatus = (state: State) => state[NameSpace.Comments].submittingStatus;
+const selectLoadingStatus = (state: State) =>
+  state[NameSpace.Comments].submittingStatus;
 
-export {
-  selectSortedComments,
-  selectLoadingStatus,
-  selectCommentsCount
-};
+export { selectSortedComments, selectLoadingStatus, selectCommentsCount };

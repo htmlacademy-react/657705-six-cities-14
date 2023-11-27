@@ -13,9 +13,9 @@ type TMapProps = {
   offers: TOfferPreview[] | TOffer[];
   classBlock: string;
   offer?: TOffer | null;
-}
+};
 
-function Map({offers, classBlock, offer = null}: TMapProps) {
+function Map({ offers, classBlock, offer = null }: TMapProps) {
   const hoveredOffer = useAppSelector(selectActiveOffer);
 
   const mapRef = useRef(null);
@@ -25,13 +25,12 @@ function Map({offers, classBlock, offer = null}: TMapProps) {
     if (map) {
       const mapLatLng: LatLngLiteral = {
         lat: offers[0].city.location.latitude,
-        lng:  offers[0].city.location.longitude
+        lng: offers[0].city.location.longitude,
       };
 
       const mapZoom = offers[0].city.location.zoom;
 
       map.setView(mapLatLng, mapZoom);
-
     }
   }, [map, offers, offer]);
 
@@ -42,11 +41,11 @@ function Map({offers, classBlock, offer = null}: TMapProps) {
       offers.forEach(({ location, id }) => {
         const marker = new Marker({
           lat: location.latitude,
-          lng: location.longitude
+          lng: location.longitude,
         });
 
         const currentIcon =
-          (id === hoveredOffer)
+          id === hoveredOffer
             ? createIcon(MapIconConfig.Active)
             : createIcon(MapIconConfig.Default);
 
@@ -56,7 +55,7 @@ function Map({offers, classBlock, offer = null}: TMapProps) {
       if (offer) {
         const marker = new Marker({
           lat: offer.location.latitude,
-          lng: offer.location.longitude
+          lng: offer.location.longitude,
         });
 
         marker.setIcon(createIcon(MapIconConfig.Active)).addTo(markerLayer);
@@ -68,13 +67,7 @@ function Map({offers, classBlock, offer = null}: TMapProps) {
     }
   }, [map, offers, hoveredOffer, offer]);
 
-  return (
-    <section
-      ref={mapRef}
-      className={`${classBlock}__map map`}
-    >
-    </section>
-  );
+  return <section ref={mapRef} className={`${classBlock}__map map`}></section>;
 }
 
 export default Map;

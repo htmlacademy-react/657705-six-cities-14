@@ -18,8 +18,4 @@ function getRandomArrElement<T>(array: T[] | ReadonlyArray<T>): T {
   return array[getRandomIntegerFromRange(0, array.length - 1)];
 }
 
-export {
-  capitalizeFirstCharacter,
-  getPluralEnding,
-  getRandomArrElement
-};
+export { capitalizeFirstCharacter, getPluralEnding, getRandomArrElement };

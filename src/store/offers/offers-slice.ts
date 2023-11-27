@@ -3,7 +3,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { CityName, LoadingStatus, NameSpace } from '../../const';
 import { TCityName } from '../../types/city';
 import { TOffer, TOfferPreview } from '../../types/offer';
-import { fetchFavoritesOffers, fetchOffers, fetchPostFavoriteStatus } from './offers-action';
+import {
+  fetchFavoritesOffers,
+  fetchOffers,
+  fetchPostFavoriteStatus,
+} from './offers-action';
 import { TLoadingStatus } from '../../types/state';
 
 type TInitialState = {
@@ -29,11 +33,14 @@ const offersSlice = createSlice({
   initialState,
   reducers: {
     changeCity: (state, action: PayloadAction<{ city: TCityName }>) => {
-      const {city} = action.payload;
+      const { city } = action.payload;
       state.city = city;
     },
-    changeActiveOffer: (state, action: PayloadAction<{id: TOffer['id'] | null}>) => {
-      const {id} = action.payload;
+    changeActiveOffer: (
+      state,
+      action: PayloadAction<{ id: TOffer['id'] | null }>
+    ) => {
+      const { id } = action.payload;
       state.active = id;
     },
     dropOffers: (state) => {
@@ -43,7 +50,7 @@ const offersSlice = createSlice({
     },
     dropActiveOffer: (state) => {
       state.active = null;
-    }
+    },
   },
   extraReducers(builder) {
     builder
@@ -65,13 +72,13 @@ const offersSlice = createSlice({
         state.loadingFavoritesStatus = LoadingStatus.Idle;
       })
       .addCase(fetchPostFavoriteStatus.fulfilled, (state, action) => {
-        const {id, isFavorite} = action.payload;
+        const { id, isFavorite } = action.payload;
 
         state.data = state.data.map((item) => {
           if (item.id === id) {
             return {
               ...item,
-              isFavorite
+              isFavorite,
             };
           }
 
@@ -84,13 +91,9 @@ const offersSlice = createSlice({
           state.favorites = state.favorites.filter((item) => item.id !== id);
         }
       });
-  }
+  },
 });
 
-export {offersSlice};
-export const {
-  changeCity,
-  changeActiveOffer,
-  dropOffers,
-  dropActiveOffer
-} = offersSlice.actions;
+export { offersSlice };
+export const { changeCity, changeActiveOffer, dropOffers, dropActiveOffer } =
+  offersSlice.actions;

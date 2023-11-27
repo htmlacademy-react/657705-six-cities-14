@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { MouseEvent, ReactNode, memo } from 'react';
+import { MouseEvent, memo } from 'react';
 import cn from 'classnames';
 
 import { TOfferPreview } from '../../types/offer';
@@ -9,7 +9,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchPostFavoriteStatus } from '../../store/offers/offers-action';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { selectAuthStatus } from '../../store/user/user-selector';
-import { changeActiveOffer, dropActiveOffer } from '../../store/offers/offers-slice';
+import {
+  changeActiveOffer,
+  dropActiveOffer,
+} from '../../store/offers/offers-slice';
 
 type TPlaceCardProps = {
   offer: TOfferPreview;
@@ -18,13 +21,12 @@ type TPlaceCardProps = {
   isFavoriteCard?: boolean;
 };
 
-function PlaceCard(
-  {
-    offer,
-    classBlock,
-    isFavoriteCard = false,
-    onMouseOver = false
-  }: TPlaceCardProps): ReactNode {
+function PlaceCard({
+  offer,
+  classBlock,
+  isFavoriteCard = false,
+  onMouseOver = false,
+}: TPlaceCardProps) {
   const {
     isPremium,
     isFavorite,
@@ -33,7 +35,7 @@ function PlaceCard(
     title,
     type,
     previewImage,
-    rating
+    rating,
   } = offer;
 
   const dispatch = useAppDispatch();
@@ -43,7 +45,7 @@ function PlaceCard(
   const handleFavoriteClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(fetchPostFavoriteStatus({id, status: isFavorite}));
+      dispatch(fetchPostFavoriteStatus({ id, status: isFavorite }));
     } else {
       navigate(AppRoute.Login);
     }
@@ -52,15 +54,14 @@ function PlaceCard(
   return (
     <article
       className={`place-card ${classBlock}__card`}
-      onMouseOver={() => onMouseOver && dispatch(changeActiveOffer({id}))}
+      onMouseOver={() => onMouseOver && dispatch(changeActiveOffer({ id }))}
       onMouseLeave={() => onMouseOver && dispatch(dropActiveOffer())}
     >
-      {
-        isPremium &&
+      {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      }
+      )}
       <div className={`place-card__image-wrapper ${classBlock}__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${id}`}>
           <img
@@ -73,11 +74,9 @@ function PlaceCard(
         </Link>
       </div>
       <div
-        className={
-          cn('place-card__info', {
-            'favorites__card-info': isFavoriteCard
-          })
-        }
+        className={cn('place-card__info', {
+          'favorites__card-info': isFavoriteCard,
+        })}
       >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
@@ -86,11 +85,9 @@ function PlaceCard(
           </div>
           <button
             onClick={handleFavoriteClick}
-            className={
-              cn('place-card__bookmark-button button', {
-                'place-card__bookmark-button--active': isFavorite
-              })
-            }
+            className={cn('place-card__bookmark-button button', {
+              'place-card__bookmark-button--active': isFavorite,
+            })}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -106,9 +103,7 @@ function PlaceCard(
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer}/${id}`}>
-            {title}
-          </Link>
+          <Link to={`${AppRoute.Offer}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstCharacter(type)}</p>
       </div>

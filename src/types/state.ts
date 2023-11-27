@@ -5,4 +5,4 @@ export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export type TLoadingStatus = typeof LoadingStatus[keyof typeof LoadingStatus];
+export type TLoadingStatus = (typeof LoadingStatus)[keyof typeof LoadingStatus];

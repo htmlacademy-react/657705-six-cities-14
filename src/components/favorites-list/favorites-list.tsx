@@ -5,9 +5,9 @@ import PlaceCard from '../place-card/place-card';
 
 type TFavoritesList = {
   offers: TOfferPreview[];
-}
+};
 
-function FavoritesList({offers}: TFavoritesList) {
+function FavoritesList({ offers }: TFavoritesList) {
   const sortedByCityOffers = getSortedByCityOffers(offers);
 
   return (
@@ -26,7 +26,14 @@ function FavoritesList({offers}: TFavoritesList) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {offersList.map((offer) => <PlaceCard key={offer.id} classBlock={'favorites'} offer={offer} isFavoriteCard />)}
+                  {offersList.map((offer) => (
+                    <PlaceCard
+                      key={offer.id}
+                      classBlock={'favorites'}
+                      offer={offer}
+                      isFavoriteCard
+                    />
+                  ))}
                 </div>
               </li>
             ))}

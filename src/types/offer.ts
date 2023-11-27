@@ -3,7 +3,7 @@ import { THost } from './host';
 import { offersTypes } from '../const';
 import { TMapLocation } from './map';
 
-type TOfferType = typeof offersTypes[number];
+type TOfferType = (typeof offersTypes)[number];
 
 export type TOfferPreview = {
   id: string;
@@ -25,4 +25,4 @@ export type TOffer = TOfferPreview & {
   host: THost;
   images: string[];
   maxAdults: number;
-}
+};

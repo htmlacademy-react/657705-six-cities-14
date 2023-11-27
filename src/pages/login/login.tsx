@@ -1,4 +1,5 @@
 import { FormEvent, MouseEvent, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
@@ -8,7 +9,6 @@ import { getRandomArrElement } from '../../utils/utils';
 import { AppRoute, cities } from '../../const';
 import { TCityName } from '../../types/city';
 import { changeCity } from '../../store/offers/offers-slice';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const dispath = useAppDispatch();
@@ -19,19 +19,24 @@ function Login() {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (emailRef.current !== null && passwordRef.current !== null) {
-      dispath(fetchPostLoginAction({
-        email: emailRef.current.value,
-        password: passwordRef.current.value
-      }));
+      dispath(
+        fetchPostLoginAction({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+      );
     }
   };
 
-  const handleCityClick = (e: MouseEvent<HTMLAnchorElement>, city: TCityName) => {
+  const handleCityClick = (
+    e: MouseEvent<HTMLAnchorElement>,
+    city: TCityName
+  ) => {
     e.preventDefault();
-    dispath(changeCity({city}));
+    dispath(changeCity({ city }));
     navigate(AppRoute.Main);
   };
 
@@ -45,9 +50,10 @@ function Login() {
           <section className="login">
             <h1 className="login__title">Sign in</h1>
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleFormSubmit}
               className="login__form form"
-              action="#" method="post"
+              action="#"
+              method="post"
             >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
@@ -71,7 +77,12 @@ function Login() {
                   required
                 />
               </div>
-              <button className="login__submit form__submit button" type="submit">Sign in</button>
+              <button
+                className="login__submit form__submit button"
+                type="submit"
+              >
+                Sign in
+              </button>
             </form>
           </section>
           <section className="locations locations--login locations--current">

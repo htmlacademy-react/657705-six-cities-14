@@ -8,14 +8,9 @@ function MainOffers() {
 
   return (
     <div className="cities__places-container container">
-      <Offers
-        offers={offers}
-      />
+      <Offers offers={offers} />
       <div className="cities__right-section">
-        <Map
-          classBlock='cities'
-          offers={offers}
-        />
+        <Map classBlock="cities" offers={offers} />
       </div>
     </div>
   );

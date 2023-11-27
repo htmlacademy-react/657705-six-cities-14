@@ -19,10 +19,13 @@ function sortHighToLow(a: TOfferPreview, b: TOfferPreview) {
   return b.price - a.price;
 }
 
-const sortedOffersBy: Record<TSortingKeys, (offers: TOfferPreview[]) => TOfferPreview[]> = {
+const sortedOffersBy: Record<
+  TSortingKeys,
+  (offers: TOfferPreview[]) => TOfferPreview[]
+> = {
   HighToLow: (offers: TOfferPreview[]) => offers.slice().sort(sortHighToLow),
   LowToHigh: (offers: TOfferPreview[]) => offers.slice().sort(sortLowToHigh),
-  TopRated: (offers: TOfferPreview[]) => offers.slice().sort(sortByRating)
+  TopRated: (offers: TOfferPreview[]) => offers.slice().sort(sortByRating),
 };
 
-export {sortedOffersBy, getRatingWidth};
+export { sortedOffersBy, getRatingWidth };

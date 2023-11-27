@@ -10,9 +10,9 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
-        extraArgument: api
-      }
-    })
+        extraArgument: api,
+      },
+    }),
 });
 
-export {api, store};
+export { api, store };

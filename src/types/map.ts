@@ -6,7 +6,7 @@ export type TMapLocation = {
 
 export type TMapIcon = {
   [K in 'Default' | 'Active']: TIconConfig;
-}
+};
 
 export type TIconConfig = {
   url: string;
@@ -14,4 +14,4 @@ export type TIconConfig = {
   height: number;
   anchorX: number;
   anchorY: number;
-}
+};

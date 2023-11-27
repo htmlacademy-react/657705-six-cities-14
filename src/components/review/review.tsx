@@ -6,10 +6,7 @@ function Review() {
   return (
     <section className="offer__reviews reviews">
       <ReviewList />
-      <IsAuth
-        authComponent={<ReviewForm />}
-        noAuthComponent={null}
-      />
+      <IsAuth authComponent={<ReviewForm />} noAuthComponent={null} />
     </section>
   );
 }

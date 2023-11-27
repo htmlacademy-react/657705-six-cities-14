@@ -4,13 +4,11 @@ type THeaderProps = {
   children: ReactNode;
 };
 
-function Header({ children }: THeaderProps): ReactNode {
+function Header({ children }: THeaderProps) {
   return (
     <header className="header">
       <div className="container">
-        <div className="header__wrapper">
-          {children}
-        </div>
+        <div className="header__wrapper">{children}</div>
       </div>
     </header>
   );

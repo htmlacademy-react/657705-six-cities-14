@@ -21,19 +21,19 @@ function HeaderAuth() {
   return (
     <>
       <li className="header__nav-item user">
-        <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
-          <div className="header__avatar-wrapper user__avatar-wrapper">
-          </div>
+        <Link
+          to={AppRoute.Favorites}
+          className="header__nav-link header__nav-link--profile"
+        >
+          <div className="header__avatar-wrapper user__avatar-wrapper"></div>
           <span className="header__user-name user__name">{userEmail}</span>
-          <span className="header__favorite-count">{favoritesCount.length}</span>
+          <span className="header__favorite-count">
+            {favoritesCount.length}
+          </span>
         </Link>
       </li>
       <li className="header__nav-item">
-        <a
-          onClick={handleLogoutClick}
-          className="header__nav-link"
-          href="#"
-        >
+        <a onClick={handleLogoutClick} className="header__nav-link" href="#">
           <span className="header__signout">Sign out</span>
         </a>
       </li>

@@ -15,4 +15,4 @@ function dropToken(): void {
   localStorage.removeItem(AUTH_TOKEN_NAME);
 }
 
-export {getToken, saveToken, dropToken};
+export { getToken, saveToken, dropToken };

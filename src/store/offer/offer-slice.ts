@@ -17,7 +17,7 @@ const initialState: TInitialState = {
   data: null,
   nearestOffers: [],
   loadingStatus: LoadingStatus.Idle,
-  loadingNearesOffersStatus: LoadingStatus.Idle
+  loadingNearesOffersStatus: LoadingStatus.Idle,
 };
 
 const offerSlice = createSlice({
@@ -52,14 +52,14 @@ const offerSlice = createSlice({
         state.loadingNearesOffersStatus = LoadingStatus.Rejected;
       })
       .addCase(fetchPostFavoriteStatus.fulfilled, (state, action) => {
-        const {isFavorite} = action.payload;
+        const { isFavorite } = action.payload;
 
         if (state.data) {
           state.data.isFavorite = isFavorite;
         }
       });
-  }
+  },
 });
 
-export {offerSlice};
-export const {dropOffer} = offerSlice.actions;
+export { offerSlice };
+export const { dropOffer } = offerSlice.actions;
