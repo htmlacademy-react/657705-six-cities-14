@@ -15,6 +15,7 @@ import { dropOffer } from '../../store/offer/offer-slice';
 import { fetchFavoritesOffers } from '../../store/offers/offers-action';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { selectAuthStatus } from '../../store/user/user-selector';
 
 function Offer() {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ function Offer() {
   const { offerId } = useParams();
   const offer = useAppSelector(selectOffer);
   const offerLoadingStatus = useAppSelector(selectOfferLoadingStatus);
+  const authStatus = useAppSelector(selectAuthStatus);
 
   useEffect(() => {
     if (offerId) {
@@ -32,7 +34,7 @@ function Offer() {
     return () => {
       dispatch(dropOffer());
     };
-  }, [offerId, dispatch]);
+  }, [offerId, dispatch, authStatus]);
 
   return (
     <div className="page">
